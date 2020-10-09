@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		014DAA2225284F0400983A97 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DAA2125284F0400983A97 /* UIColor+.swift */; };
+		014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DAA2325284F7A00983A97 /* CGFloat+.swift */; };
+		0178C76B2530470F000F4E21 /* CustomSegmentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */; };
 		017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */; };
 		017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */; };
 		017AF6D424B8C95F00612CD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6D324B8C95F00612CD6 /* ViewController.swift */; };
 		017AF6D724B8C95F00612CD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6D524B8C95F00612CD6 /* Main.storyboard */; };
 		017AF6D924B8C95F00612CD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6D824B8C95F00612CD6 /* Assets.xcassets */; };
 		017AF6DC24B8C95F00612CD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */; };
+		01AEFDCF25209DAC00EC4B71 /* ChangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDCE25209DAC00EC4B71 /* ChangeButton.swift */; };
+		01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDD22520AB9300EC4B71 /* ClockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		014DAA2125284F0400983A97 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		014DAA2325284F7A00983A97 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentionView.swift; sourceTree = "<group>"; };
 		017AF6CC24B8C95F00612CD6 /* SkillTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +32,8 @@
 		017AF6D824B8C95F00612CD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017AF6DB24B8C95F00612CD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		017AF6DD24B8C95F00612CD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01AEFDCE25209DAC00EC4B71 /* ChangeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeButton.swift; sourceTree = "<group>"; };
+		01AEFDD22520AB9300EC4B71 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		014DAA2025284EEF00983A97 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				014DAA2125284F0400983A97 /* UIColor+.swift */,
+				014DAA2325284F7A00983A97 /* CGFloat+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		017AF6C324B8C95F00612CD6 = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +75,43 @@
 		017AF6CE24B8C95F00612CD6 /* SkillTest */ = {
 			isa = PBXGroup;
 			children = (
+				014DAA2025284EEF00983A97 /* Extension */,
+				01AEFDCD25209CDC00EC4B71 /* UI */,
 				017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */,
 				017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */,
 				017AF6D324B8C95F00612CD6 /* ViewController.swift */,
-				017AF6D524B8C95F00612CD6 /* Main.storyboard */,
 				017AF6D824B8C95F00612CD6 /* Assets.xcassets */,
+				017AF6D524B8C95F00612CD6 /* Main.storyboard */,
 				017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */,
 				017AF6DD24B8C95F00612CD6 /* Info.plist */,
 			);
 			path = SkillTest;
+			sourceTree = "<group>";
+		};
+		01AEFDCD25209CDC00EC4B71 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				01AEFDD12520AB6A00EC4B71 /* CustomView */,
+				01AEFDD02520AB6000EC4B71 /* Button */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		01AEFDD02520AB6000EC4B71 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				01AEFDCE25209DAC00EC4B71 /* ChangeButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		01AEFDD12520AB6A00EC4B71 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				01AEFDD22520AB9300EC4B71 /* ClockView.swift */,
+				0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +186,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				017AF6D424B8C95F00612CD6 /* ViewController.swift in Sources */,
+				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
+				01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */,
+				014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */,
+				0178C76B2530470F000F4E21 /* CustomSegmentionView.swift in Sources */,
 				017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */,
 				017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */,
+				01AEFDCF25209DAC00EC4B71 /* ChangeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

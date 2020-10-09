@@ -1,21 +1,28 @@
-//
-//  ViewController.swift
-//  SkillTest
-//
-//  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
+@IBDesignable class ViewController: UIViewController {
+    
+    @IBOutlet weak var button: ChangeButton!
+    @IBOutlet weak var clockView: ClockView!
     
     var segmControl = UISegmentedControl()
-    var taskView = UIView()
-
+    
+    private var timer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        clockView.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
         createTaskSegmentedControl()
+
     }
+
+    @IBAction func buttonTapped(_ sender: Any) {
+        button.buttonColor = .random()
+    }
+    
     
     func createTaskSegmentedControl() {
         let items = ["1️⃣", "2️⃣", "3️⃣"]
@@ -23,27 +30,27 @@ class ViewController: UIViewController {
         segmControl.addTarget(self, action: #selector(taskDidChange(_:)), for: .valueChanged)
         segmControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmControl)
-        
+
         NSLayoutConstraint.activate([
             segmControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             segmControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 35)
-        
+
         ])
-        
+
     // Заголовок
         let segmLabel = UILabel()
         segmLabel.text = "Выбери задание"
         segmLabel.textColor = UIColor.black
         segmLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmLabel)
-        
+
         NSLayoutConstraint.activate([
             segmLabel.bottomAnchor.constraint(equalTo: segmControl.topAnchor, constant: -15),
             segmLabel.centerXAnchor.constraint(equalTo: segmControl.centerXAnchor)
         ])
-        
+
     }
-    
+
     @objc func taskDidChange(_ segmControl: UISegmentedControl){
         switch segmControl.selectedSegmentIndex{
         case 0: // Задание 1
@@ -56,6 +63,4 @@ class ViewController: UIViewController {
             print("def")
         }
     }
-    
-
 }
