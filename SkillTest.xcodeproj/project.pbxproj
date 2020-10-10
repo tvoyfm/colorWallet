@@ -63,6 +63,7 @@
 		011D176B253094220039DDDF /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				017AF6D324B8C95F00612CD6 /* ViewController.swift */,
 				011D176C2530944C0039DDDF /* MainViewController.swift */,
 			);
 			path = VC;
@@ -103,7 +104,6 @@
 				01AEFDCD25209CDC00EC4B71 /* UI */,
 				017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */,
 				017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */,
-				017AF6D324B8C95F00612CD6 /* ViewController.swift */,
 				017AF6D824B8C95F00612CD6 /* Assets.xcassets */,
 				017AF6D524B8C95F00612CD6 /* Main.storyboard */,
 				017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */,
