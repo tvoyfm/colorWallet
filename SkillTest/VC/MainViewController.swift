@@ -7,7 +7,6 @@
 
 import UIKit
 
-@IBDesignable
 class MainViewController: UIViewController {
 
     override func viewDidLoad() {
