@@ -14,6 +14,6 @@ extension UIColor {
         return UIColor(red:   .random(),
                        green: .random(),
                        blue:  .random(),
-                       alpha: 0.5)
+                       alpha: 1)
     }
 }

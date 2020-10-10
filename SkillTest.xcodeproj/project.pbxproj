@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011D176A25308DAB0039DDDF /* CAGradientLayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011D176925308DAB0039DDDF /* CAGradientLayer+.swift */; };
+		011D176D2530944C0039DDDF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011D176C2530944C0039DDDF /* MainViewController.swift */; };
 		014DAA2225284F0400983A97 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DAA2125284F0400983A97 /* UIColor+.swift */; };
 		014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DAA2325284F7A00983A97 /* CGFloat+.swift */; };
 		0178C76B2530470F000F4E21 /* CustomSegmentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */; };
+		0178C76D25306F0C000F4E21 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178C76C25306F0C000F4E21 /* GradientView.swift */; };
 		017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */; };
 		017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */; };
 		017AF6D424B8C95F00612CD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6D324B8C95F00612CD6 /* ViewController.swift */; };
@@ -21,9 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		011D176925308DAB0039DDDF /* CAGradientLayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+.swift"; sourceTree = "<group>"; };
+		011D176C2530944C0039DDDF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		014DAA2125284F0400983A97 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		014DAA2325284F7A00983A97 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentionView.swift; sourceTree = "<group>"; };
+		0178C76C25306F0C000F4E21 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		017AF6CC24B8C95F00612CD6 /* SkillTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,11 +53,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0112EE5925319BAB00E8FAB7 /* ExampleData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ExampleData;
+			sourceTree = "<group>";
+		};
+		011D176B253094220039DDDF /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				011D176C2530944C0039DDDF /* MainViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		014DAA2025284EEF00983A97 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				014DAA2125284F0400983A97 /* UIColor+.swift */,
 				014DAA2325284F7A00983A97 /* CGFloat+.swift */,
+				011D176925308DAB0039DDDF /* CAGradientLayer+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -75,6 +97,8 @@
 		017AF6CE24B8C95F00612CD6 /* SkillTest */ = {
 			isa = PBXGroup;
 			children = (
+				0112EE5925319BAB00E8FAB7 /* ExampleData */,
+				011D176B253094220039DDDF /* VC */,
 				014DAA2025284EEF00983A97 /* Extension */,
 				01AEFDCD25209CDC00EC4B71 /* UI */,
 				017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */,
@@ -110,6 +134,7 @@
 			children = (
 				01AEFDD22520AB9300EC4B71 /* ClockView.swift */,
 				0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */,
+				0178C76C25306F0C000F4E21 /* GradientView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -186,13 +211,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				017AF6D424B8C95F00612CD6 /* ViewController.swift in Sources */,
+				011D176D2530944C0039DDDF /* MainViewController.swift in Sources */,
 				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
 				01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */,
 				014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */,
 				0178C76B2530470F000F4E21 /* CustomSegmentionView.swift in Sources */,
 				017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */,
 				017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */,
+				011D176A25308DAB0039DDDF /* CAGradientLayer+.swift in Sources */,
 				01AEFDCF25209DAC00EC4B71 /* ChangeButton.swift in Sources */,
+				0178C76D25306F0C000F4E21 /* GradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

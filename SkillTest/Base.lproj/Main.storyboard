@@ -7,84 +7,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="hdC-K6-ph8">
             <objects>
-                <viewController id="5g3-PI-eOY" customClass="ViewController" customModule="SkillTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5g3-PI-eOY" customClass="MainViewController" customModule="SkillTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oh9-AR-N94">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doT-Yp-yPw" customClass="ClockView" customModule="SkillTest" customModuleProvider="target">
-                                <rect key="frame" x="87" y="328" width="240" height="240"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="mAA-oH-EMu"/>
-                                    <constraint firstAttribute="width" constant="240" id="tJH-lt-Y7U"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="hours">
-                                        <real key="value" value="9"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minutes">
-                                        <real key="value" value="30"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="seconds">
-                                        <real key="value" value="51"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="markerColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="hourLineColor">
-                                        <color key="value" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="minLineColor">
-                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="roundedViewColor">
-                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yye-g3-Kmr" customClass="ChangeButton" customModule="SkillTest" customModuleProvider="target">
-                                <rect key="frame" x="82" y="198" width="250" height="30"/>
-                                <state key="normal" title="click to change button color">
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="width">
-                                        <real key="value" value="250"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="5g3-PI-eOY" eventType="touchUpInside" id="Lq3-cb-1x6"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xR5-Vp-JyJ" customClass="CustomSegmentionView" customModule="SkillTest" customModuleProvider="target">
-                                <rect key="frame" x="87" y="697" width="240" height="55"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hhg-eP-i51" customClass="GradientView" customModule="SkillTest" customModuleProvider="target">
+                                <rect key="frame" x="20" y="44" width="374" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="doT-Yp-yPw" firstAttribute="centerX" secondItem="Oh9-AR-N94" secondAttribute="centerX" id="5fe-Bt-gJe"/>
-                            <constraint firstItem="doT-Yp-yPw" firstAttribute="top" secondItem="Yye-g3-Kmr" secondAttribute="bottom" constant="100" id="D8h-CT-lWn"/>
-                            <constraint firstItem="doT-Yp-yPw" firstAttribute="centerY" secondItem="Oh9-AR-N94" secondAttribute="centerY" id="Lrx-80-qm6"/>
-                            <constraint firstItem="Yye-g3-Kmr" firstAttribute="centerX" secondItem="Oh9-AR-N94" secondAttribute="centerX" id="cwg-2D-3Sf"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="YqA-IK-tvL"/>
                     </view>
-                    <connections>
-                        <outlet property="button" destination="Yye-g3-Kmr" id="PJP-ug-3sK"/>
-                        <outlet property="clockView" destination="doT-Yp-yPw" id="c8y-BQ-pis"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHh-98-f5L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
