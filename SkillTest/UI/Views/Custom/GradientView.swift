@@ -48,7 +48,7 @@ class GradientView: UIView {
         layer.cornerRadius = 15
         layer.masksToBounds = true
         
-        timer = Timer.scheduledTimer(timeInterval: timeAnim, target: self, selector: #selector(updateColors2), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: timeAnim, target: self, selector: #selector(updateColors), userInfo: nil, repeats: true)
     }
     
     @objc func updateColors(){
