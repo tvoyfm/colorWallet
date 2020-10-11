@@ -14,6 +14,7 @@ public enum Color {
         case blue
         case darkBlue
         case green
+        case lightGray
 
         public var uiColor: UIColor {
             switch self {
@@ -23,6 +24,8 @@ public enum Color {
                 return #colorLiteral(red: 0.04030030841, green: 0.1336947748, blue: 0.240469792, alpha: 1)
             case .green:
                 return #colorLiteral(red: 0, green: 0.8784313725, blue: 0.5882352941, alpha: 1)
+            case .lightGray:
+                return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 
         }
     }

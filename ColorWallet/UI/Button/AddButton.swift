@@ -3,10 +3,10 @@ import UIKit
 @IBDesignable
 class AddButton: UIButton {
     
-    var buttonBackColor = UIColor.gray
+    var buttonColor     = Color.lightGray
     var buttonTintColor = Color.darkBlue
-    var buttonFont = UIFont(name: "Montserrat-Bold", size: 20)
-    var cornerRadius: CGFloat = 15
+    var buttonFont      = UIFont(name: "Montserrat-Bold", size: 20)
+    var cornerRadius:   CGFloat = 15
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,16 +20,11 @@ class AddButton: UIButton {
     
     func setupButton() {
         translatesAutoresizingMaskIntoConstraints = false
-        
         layer.cornerRadius  = cornerRadius
-        
-        backgroundColor     = buttonBackColor
-        
+        backgroundColor     = buttonColor.uiColor
         titleLabel?.font    = buttonFont
-        
-        setTitleColor(.lightGray, for: .highlighted)
-        
-        //addTarget(self, action: #selector(push), for: .touchUpInside)
+        setTitleColor(.gray, for: .highlighted)
+        addTarget(self, action: #selector(push), for: .touchUpInside)
 }
     
     @objc func push(){

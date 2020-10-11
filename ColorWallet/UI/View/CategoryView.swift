@@ -10,16 +10,24 @@ import UIKit
 
 @IBDesignable
 class CategoryView: UIView {
+    
+    private var timer = Timer()
+    private var timeAnim = Double(3)
+    
+    let color1 = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    let color2 = #colorLiteral(red: 0.9187817259, green: 0.9187817259, blue: 0.9187817259, alpha: 1)
 
     var balanceLabel = BalanceLabel()
     var gradientView = GradientView()
     
-    var scrollView = UIScrollView()
+    private var scrollView = UIScrollView()
       
       override func layoutSubviews() {
         layer.cornerRadius = 15
         //setupGradient()
-        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        backgroundColor = color2
+        
+        timer = Timer.scheduledTimer(timeInterval: timeAnim, target: self, selector: #selector(updateColors), userInfo: nil, repeats: true)
       }
       
       func setupGradient() {
@@ -29,5 +37,17 @@ class CategoryView: UIView {
         gradientView.translatesAutoresizingMaskIntoConstraints = false
           
         gradientView.constraintInto(self)
+    }
+    
+    @objc func updateColors(){
+        if backgroundColor == color1{
+            UIView.animate(withDuration: timeAnim, animations: {
+                self.backgroundColor = self.color2
+            })
+        } else{
+            UIView.animate(withDuration: timeAnim, animations: {
+                self.backgroundColor = self.color1
+            })
+        }
     }
 }

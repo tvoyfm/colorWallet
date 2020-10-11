@@ -56,6 +56,7 @@
 		01B29E4725334FE500434562 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		01B2B29E253384F900FFB0A1 /* Withdraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withdraw.swift; sourceTree = "<group>"; };
 		01B2B2A02533929700FFB0A1 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		01B2B2A2253399F400FFB0A1 /* Task.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Task.md; sourceTree = "<group>"; };
 		01D20D5B2531A5DB001D2F16 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1DB32129365856AC1C3BCC67 /* Pods-ColorWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorWallet.debug.xcconfig"; path = "Target Support Files/Pods-ColorWallet/Pods-ColorWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		5D1A770D1086A4059C6DF5C7 /* Pods_ColorWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +130,7 @@
 		017AF6C324B8C95F00612CD6 = {
 			isa = PBXGroup;
 			children = (
+				01B2B2A2253399F400FFB0A1 /* Task.md */,
 				017AF6CE24B8C95F00612CD6 /* ColorWallet */,
 				017AF6CD24B8C95F00612CD6 /* Products */,
 				9D36293840186A80D7292036 /* Pods */,
