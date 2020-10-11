@@ -11,27 +11,23 @@ import UIKit
 @IBDesignable
 class CategoryView: UIView {
 
-      var balanceLabel = BalanceLabel()
-      var gradientView = GradientView()
+    var balanceLabel = BalanceLabel()
+    var gradientView = GradientView()
+    
+    var scrollView = UIScrollView()
       
       override func layoutSubviews() {
         layer.cornerRadius = 15
-        setupGradient()
+        //setupGradient()
+        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
       }
       
       func setupGradient() {
-        gradientView.alpha = 0.7
+        gradientView.alpha = 0.1
         
         addSubview(gradientView)
         gradientView.translatesAutoresizingMaskIntoConstraints = false
           
-        NSLayoutConstraint.activate([
-          gradientView.topAnchor.constraint(equalTo: topAnchor),
-          gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
-          gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
-          gradientView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        gradientView.constraintInto(self)
     }
-
-
 }

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SkillTest.xcodeproj">
+      location = "self:/Users/bcsqa/skill_proj/ColorWallet/ColorWallet.xcodeproj">
    </FileRef>
 </Workspace>

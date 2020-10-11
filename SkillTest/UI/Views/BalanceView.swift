@@ -26,12 +26,7 @@ class BalanceView: UIView {
         gradientView.bounds = self.bounds
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            gradientView.topAnchor.constraint(equalTo: topAnchor),
-            gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            gradientView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        gradientView.constraintInto(self)
     }
     
     func setupBalance() {

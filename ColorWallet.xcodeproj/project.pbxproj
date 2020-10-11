@@ -24,6 +24,7 @@
 		017AF6DC24B8C95F00612CD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */; };
 		01AEFDCF25209DAC00EC4B71 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDCE25209DAC00EC4B71 /* AddButton.swift */; };
 		01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDD22520AB9300EC4B71 /* ClockView.swift */; };
+		01B29E4825334FE500434562 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B29E4725334FE500434562 /* UIView+.swift */; };
 		01D20D5C2531A5DB001D2F16 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D20D5B2531A5DB001D2F16 /* Color.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +39,7 @@
 		014DAA2325284F7A00983A97 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentionView.swift; sourceTree = "<group>"; };
 		0178C76C25306F0C000F4E21 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		017AF6CC24B8C95F00612CD6 /* SkillTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		017AF6CC24B8C95F00612CD6 /* ColorWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		017AF6D624B8C95F00612CD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		017AF6DD24B8C95F00612CD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01AEFDCE25209DAC00EC4B71 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		01AEFDD22520AB9300EC4B71 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		01B29E4725334FE500434562 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		01D20D5B2531A5DB001D2F16 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				014DAA2125284F0400983A97 /* UIColor+.swift */,
 				014DAA2325284F7A00983A97 /* CGFloat+.swift */,
 				011D176925308DAB0039DDDF /* CAGradientLayer+.swift */,
+				01B29E4725334FE500434562 /* UIView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -123,7 +126,7 @@
 		017AF6CD24B8C95F00612CD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				017AF6CC24B8C95F00612CD6 /* SkillTest.app */,
+				017AF6CC24B8C95F00612CD6 /* ColorWallet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,9 +134,9 @@
 		017AF6CE24B8C95F00612CD6 /* SkillTest */ = {
 			isa = PBXGroup;
 			children = (
+				014DAA2025284EEF00983A97 /* Extension */,
 				0112EE5925319BAB00E8FAB7 /* ExampleData */,
 				011D176B253094220039DDDF /* VC */,
-				014DAA2025284EEF00983A97 /* Extension */,
 				01AEFDCD25209CDC00EC4B71 /* UI */,
 				017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */,
 				017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */,
@@ -186,9 +189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		017AF6CB24B8C95F00612CD6 /* SkillTest */ = {
+		017AF6CB24B8C95F00612CD6 /* ColorWallet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 017AF6E024B8C95F00612CD6 /* Build configuration list for PBXNativeTarget "SkillTest" */;
+			buildConfigurationList = 017AF6E024B8C95F00612CD6 /* Build configuration list for PBXNativeTarget "ColorWallet" */;
 			buildPhases = (
 				017AF6C824B8C95F00612CD6 /* Sources */,
 				017AF6C924B8C95F00612CD6 /* Frameworks */,
@@ -198,9 +201,9 @@
 			);
 			dependencies = (
 			);
-			name = SkillTest;
+			name = ColorWallet;
 			productName = SkillTest;
-			productReference = 017AF6CC24B8C95F00612CD6 /* SkillTest.app */;
+			productReference = 017AF6CC24B8C95F00612CD6 /* ColorWallet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -218,7 +221,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 017AF6C724B8C95F00612CD6 /* Build configuration list for PBXProject "SkillTest" */;
+			buildConfigurationList = 017AF6C724B8C95F00612CD6 /* Build configuration list for PBXProject "ColorWallet" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -231,7 +234,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				017AF6CB24B8C95F00612CD6 /* SkillTest */,
+				017AF6CB24B8C95F00612CD6 /* ColorWallet */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +260,7 @@
 			files = (
 				01D20D5C2531A5DB001D2F16 /* Color.swift in Sources */,
 				011D176D2530944C0039DDDF /* MainViewController.swift in Sources */,
+				01B29E4825334FE500434562 /* UIView+.swift in Sources */,
 				0140C0EF253246A100737474 /* BalanceLabel.swift in Sources */,
 				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
 				01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */,
@@ -420,8 +424,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.SkillTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.ColorWallet;
+				PRODUCT_NAME = ColorWallet;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -439,8 +443,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.SkillTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.ColorWallet;
+				PRODUCT_NAME = ColorWallet;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,7 +453,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		017AF6C724B8C95F00612CD6 /* Build configuration list for PBXProject "SkillTest" */ = {
+		017AF6C724B8C95F00612CD6 /* Build configuration list for PBXProject "ColorWallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				017AF6DE24B8C95F00612CD6 /* Debug */,
@@ -458,7 +462,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		017AF6E024B8C95F00612CD6 /* Build configuration list for PBXNativeTarget "SkillTest" */ = {
+		017AF6E024B8C95F00612CD6 /* Build configuration list for PBXNativeTarget "ColorWallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				017AF6E124B8C95F00612CD6 /* Debug */,
