@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,17 +22,21 @@
 		017AF6D724B8C95F00612CD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6D524B8C95F00612CD6 /* Main.storyboard */; };
 		017AF6D924B8C95F00612CD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6D824B8C95F00612CD6 /* Assets.xcassets */; };
 		017AF6DC24B8C95F00612CD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */; };
+		019468452533726C00989BAB /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019468442533726C00989BAB /* Categories.swift */; };
 		01AEFDCF25209DAC00EC4B71 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDCE25209DAC00EC4B71 /* AddButton.swift */; };
 		01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDD22520AB9300EC4B71 /* ClockView.swift */; };
 		01B29E4825334FE500434562 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B29E4725334FE500434562 /* UIView+.swift */; };
+		01B2B29F253384F900FFB0A1 /* Withdraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B2B29E253384F900FFB0A1 /* Withdraw.swift */; };
+		01B2B2A12533929700FFB0A1 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B2B2A02533929700FFB0A1 /* Balance.swift */; };
 		01D20D5C2531A5DB001D2F16 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D20D5B2531A5DB001D2F16 /* Color.swift */; };
+		12DFC747AF0B9EBA79D0CA85 /* Pods_ColorWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1A770D1086A4059C6DF5C7 /* Pods_ColorWallet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		011D176925308DAB0039DDDF /* CAGradientLayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+.swift"; sourceTree = "<group>"; };
 		011D176C2530944C0039DDDF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0140C0E82532371B00737474 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		0140C0EB253241DA00737474 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BalanceView.swift; path = ColorWallet/UI/Views/BalanceView.swift; sourceTree = SOURCE_ROOT; };
+		0140C0EB253241DA00737474 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BalanceView.swift; path = ColorWallet/UI/View/BalanceView.swift; sourceTree = SOURCE_ROOT; };
 		0140C0EE253246A100737474 /* BalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLabel.swift; sourceTree = "<group>"; };
 		0140C0F025324DC600737474 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		014DAA2125284F0400983A97 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -46,10 +50,16 @@
 		017AF6D824B8C95F00612CD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017AF6DB24B8C95F00612CD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		017AF6DD24B8C95F00612CD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		019468442533726C00989BAB /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		01AEFDCE25209DAC00EC4B71 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		01AEFDD22520AB9300EC4B71 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		01B29E4725334FE500434562 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		01B2B29E253384F900FFB0A1 /* Withdraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withdraw.swift; sourceTree = "<group>"; };
+		01B2B2A02533929700FFB0A1 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		01D20D5B2531A5DB001D2F16 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		1DB32129365856AC1C3BCC67 /* Pods-ColorWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorWallet.debug.xcconfig"; path = "Target Support Files/Pods-ColorWallet/Pods-ColorWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		5D1A770D1086A4059C6DF5C7 /* Pods_ColorWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ColorWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC3242EAA52C54D75518CF13 /* Pods-ColorWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ColorWallet.release.xcconfig"; path = "Target Support Files/Pods-ColorWallet/Pods-ColorWallet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12DFC747AF0B9EBA79D0CA85 /* Pods_ColorWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +131,8 @@
 			children = (
 				017AF6CE24B8C95F00612CD6 /* ColorWallet */,
 				017AF6CD24B8C95F00612CD6 /* Products */,
+				9D36293840186A80D7292036 /* Pods */,
+				54D4AD91CA71BC4A9B9DCA45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +147,7 @@
 		017AF6CE24B8C95F00612CD6 /* ColorWallet */ = {
 			isa = PBXGroup;
 			children = (
+				019468432533720000989BAB /* Data */,
 				014DAA2025284EEF00983A97 /* Extension */,
 				0112EE5925319BAB00E8FAB7 /* ExampleData */,
 				011D176B253094220039DDDF /* VC */,
@@ -148,12 +162,22 @@
 			path = ColorWallet;
 			sourceTree = "<group>";
 		};
+		019468432533720000989BAB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				019468442533726C00989BAB /* Categories.swift */,
+				01B2B29E253384F900FFB0A1 /* Withdraw.swift */,
+				01B2B2A02533929700FFB0A1 /* Balance.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		01AEFDCD25209CDC00EC4B71 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				0140C0ED2532467A00737474 /* Label */,
-				01D20D582531A576001D2F16 /* Styles */,
-				01AEFDD12520AB6A00EC4B71 /* Views */,
+				01D20D582531A576001D2F16 /* Style */,
+				01AEFDD12520AB6A00EC4B71 /* View */,
 				01AEFDD02520AB6000EC4B71 /* Button */,
 			);
 			path = UI;
@@ -167,23 +191,40 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
-		01AEFDD12520AB6A00EC4B71 /* Views */ = {
+		01AEFDD12520AB6A00EC4B71 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				0140C0EA253241B100737474 /* Custom */,
 				0140C0EB253241DA00737474 /* BalanceView.swift */,
 				0140C0F025324DC600737474 /* CategoryView.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		01D20D582531A576001D2F16 /* Styles */ = {
+		01D20D582531A576001D2F16 /* Style */ = {
 			isa = PBXGroup;
 			children = (
 				01175CC52531AFEF003736B3 /* Fonts */,
 				01D20D5B2531A5DB001D2F16 /* Color.swift */,
 			);
-			path = Styles;
+			path = Style;
+			sourceTree = "<group>";
+		};
+		54D4AD91CA71BC4A9B9DCA45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5D1A770D1086A4059C6DF5C7 /* Pods_ColorWallet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D36293840186A80D7292036 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1DB32129365856AC1C3BCC67 /* Pods-ColorWallet.debug.xcconfig */,
+				CC3242EAA52C54D75518CF13 /* Pods-ColorWallet.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +234,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 017AF6E024B8C95F00612CD6 /* Build configuration list for PBXNativeTarget "ColorWallet" */;
 			buildPhases = (
+				F920FB09286104A351A27F49 /* [CP] Check Pods Manifest.lock */,
 				017AF6C824B8C95F00612CD6 /* Sources */,
 				017AF6C924B8C95F00612CD6 /* Frameworks */,
 				017AF6CA24B8C95F00612CD6 /* Resources */,
+				ADECC198115C815070F45801 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,19 +296,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ADECC198115C815070F45801 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ColorWallet/Pods-ColorWallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ColorWallet/Pods-ColorWallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ColorWallet/Pods-ColorWallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F920FB09286104A351A27F49 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ColorWallet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		017AF6C824B8C95F00612CD6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				01D20D5C2531A5DB001D2F16 /* Color.swift in Sources */,
+				019468452533726C00989BAB /* Categories.swift in Sources */,
 				011D176D2530944C0039DDDF /* MainViewController.swift in Sources */,
 				01B29E4825334FE500434562 /* UIView+.swift in Sources */,
+				01B2B2A12533929700FFB0A1 /* Balance.swift in Sources */,
 				0140C0EF253246A100737474 /* BalanceLabel.swift in Sources */,
 				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
 				01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */,
 				014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */,
 				0178C76B2530470F000F4E21 /* CustomSegmentionView.swift in Sources */,
+				01B2B29F253384F900FFB0A1 /* Withdraw.swift in Sources */,
 				017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */,
 				0140C0F125324DC600737474 /* CategoryView.swift in Sources */,
 				017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */,
@@ -414,6 +502,7 @@
 		};
 		017AF6E124B8C95F00612CD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DB32129365856AC1C3BCC67 /* Pods-ColorWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -433,6 +522,7 @@
 		};
 		017AF6E224B8C95F00612CD6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC3242EAA52C54D75518CF13 /* Pods-ColorWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

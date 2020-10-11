@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable
 class BalanceView: UIView {
     
-    var balance = 350135.66
+    var balance = Balance()
     
     var balanceLabel = BalanceLabel()
     var gradientView = GradientView()
@@ -33,7 +33,7 @@ class BalanceView: UIView {
         addSubview(balanceLabel)
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        balanceLabel.text = "\(balance) ₽"
+        balanceLabel.text = balance.formattingBalance
         
         NSLayoutConstraint.activate([
             balanceLabel.topAnchor.constraint(equalTo: topAnchor),
