@@ -32,7 +32,7 @@
 		011D176925308DAB0039DDDF /* CAGradientLayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+.swift"; sourceTree = "<group>"; };
 		011D176C2530944C0039DDDF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0140C0E82532371B00737474 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		0140C0EB253241DA00737474 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BalanceView.swift; path = SkillTest/UI/Views/BalanceView.swift; sourceTree = SOURCE_ROOT; };
+		0140C0EB253241DA00737474 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BalanceView.swift; path = ColorWallet/UI/Views/BalanceView.swift; sourceTree = SOURCE_ROOT; };
 		0140C0EE253246A100737474 /* BalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLabel.swift; sourceTree = "<group>"; };
 		0140C0F025324DC600737474 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		014DAA2125284F0400983A97 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		017AF6C324B8C95F00612CD6 = {
 			isa = PBXGroup;
 			children = (
-				017AF6CE24B8C95F00612CD6 /* SkillTest */,
+				017AF6CE24B8C95F00612CD6 /* ColorWallet */,
 				017AF6CD24B8C95F00612CD6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,7 +131,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		017AF6CE24B8C95F00612CD6 /* SkillTest */ = {
+		017AF6CE24B8C95F00612CD6 /* ColorWallet */ = {
 			isa = PBXGroup;
 			children = (
 				014DAA2025284EEF00983A97 /* Extension */,
@@ -145,7 +145,7 @@
 				017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */,
 				017AF6DD24B8C95F00612CD6 /* Info.plist */,
 			);
-			path = SkillTest;
+			path = ColorWallet;
 			sourceTree = "<group>";
 		};
 		01AEFDCD25209CDC00EC4B71 /* UI */ = {
@@ -418,7 +418,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2FBF2ZJ7C;
-				INFOPLIST_FILE = SkillTest/Info.plist;
+				INFOPLIST_FILE = ColorWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -437,7 +437,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2FBF2ZJ7C;
-				INFOPLIST_FILE = SkillTest/Info.plist;
+				INFOPLIST_FILE = ColorWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
