@@ -7,27 +7,16 @@
 import UIKit
 
 class MainViewController: UIViewController {
-// sample date
-//    let category: Category = {
-//        let withD = Withdraw()
-//        let c = Category()
-//
-//        withD.category = c
-//
-//        c.name       = "Eda"
-//        c.sum        = 1302
-//        c.colorHEX   = UIColor.red.toHexString()
-//        c.withdrawals.append(withD)
-//        c.withdrawals.append(withD)
-//
-//        return c
-//    }()
+    
+    let storage = CategoryStorage.data
     
 //  Views
     var balanceView = BalanceView()
     var categoryView = CategoryView()
-    var addWithdrawButton = AddButton(type: .custom)
-    var addCategoryButton = AddButton(type: .custom)
+    var addWithdrawButton = AddMainButton(type: .custom)
+    var addCategoryButton = AddSecondButton(type: .custom)
+    
+    var addCategoryVC     = AddCategoryViewController()
     
 //  View parameters
 //  -- padding for left and right
@@ -37,10 +26,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
-//        CategoryStore.data.write(category)
         
-        CategoryStore.data.printAll()
+        storage.printAll()
     }
     
 // View initialization
@@ -48,10 +35,12 @@ class MainViewController: UIViewController {
         configWithdrawButton()
         configBalanceView()
         configCategoryView()
+        configCategoryButton()
     }
 
         func configWithdrawButton() {
             addWithdrawButton.setTitle("Добавить расходы", for: .normal)
+            addWithdrawButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
             
             view.addSubview(addWithdrawButton)
             NSLayoutConstraint.activate([
@@ -61,18 +50,6 @@ class MainViewController: UIViewController {
                 addWithdrawButton.heightAnchor.constraint(equalToConstant: 60)
             ])
         }
-
-        //    func configCategoryButton() {
-        //        addCategoryButton.setTitle("Добавить категорию", for: .normal)
-        //
-        //        view.addSubview(addCategoryButton)
-        //        NSLayoutConstraint.activate([
-        //            addCategoryButton.bottomAnchor.constraint(equalTo: addWithdrawButton.topAnchor, constant: -paddingInside),
-        //            addCategoryButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLR),
-        //            addCategoryButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -paddingLR),
-        //            addCategoryButton.heightAnchor.constraint(equalToConstant: 20)
-        //        ])
-        //    }
 
         func configBalanceView(){
             balanceView.translatesAutoresizingMaskIntoConstraints = false
@@ -97,4 +74,29 @@ class MainViewController: UIViewController {
                 categoryView.bottomAnchor.constraint(equalTo: addWithdrawButton.topAnchor, constant: -paddingInside)
             ])
         }
+    
+        func configCategoryButton() {
+            view.addSubview(addCategoryButton)
+            NSLayoutConstraint.activate([
+                addCategoryButton.centerYAnchor.constraint(equalTo: categoryView.centerYAnchor),
+                addCategoryButton.centerXAnchor.constraint(equalTo: categoryView.centerXAnchor),
+                addCategoryButton.heightAnchor.constraint(equalToConstant: addCategoryButton.buttonSize),
+                addCategoryButton.widthAnchor.constraint(equalTo: addCategoryButton.heightAnchor)
+            ])
+            
+            addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
+        }
+    
+    @objc func addCategory(){
+        present(addCategoryVC, animated: true, completion: nil)
+    }
+    
+    @objc func addTransaction(){
+    var category = storage.firstCategory()
+    var transaction = Transaction(name: "Auchan", date: NSDate(), sum: 2510.20, category: category)
+
+    balanceView.updateLabelBalance()
+    storage.printAll()
+    }
+    
 }

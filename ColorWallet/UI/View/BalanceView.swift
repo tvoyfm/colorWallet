@@ -22,10 +22,8 @@ class BalanceView: UIView {
     
     func setupGradient() {
         addSubview(gradientView)
-        
         gradientView.bounds = self.bounds
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-        
         gradientView.constraintInto(self)
     }
     
@@ -33,7 +31,7 @@ class BalanceView: UIView {
         addSubview(balanceLabel)
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        balanceLabel.text = balance.formattingBalance
+        updateLabelBalance()
         
         NSLayoutConstraint.activate([
             balanceLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -42,5 +40,9 @@ class BalanceView: UIView {
             balanceLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-
+    
+    func updateLabelBalance() {
+        balance.updateBalance()
+        balanceLabel.text = balance.formattingBalance
+    }
 }

@@ -13,29 +13,27 @@ class CategoryView: UIView {
     
     private var timer = Timer()
     private var timeAnim = Double(3)
-    
+
     let color1 = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     let color2 = #colorLiteral(red: 0.9187817259, green: 0.9187817259, blue: 0.9187817259, alpha: 1)
 
     var balanceLabel = BalanceLabel()
     var gradientView = GradientView()
-    
+
     private var scrollView = UIScrollView()
       
-      override func layoutSubviews() {
+    override func layoutSubviews() {
         layer.cornerRadius = 15
-        //setupGradient()
         backgroundColor = color2
-        
+        //setupGradient()
+
         timer = Timer.scheduledTimer(timeInterval: timeAnim, target: self, selector: #selector(updateColors), userInfo: nil, repeats: true)
-      }
-      
-      func setupGradient() {
+    }
+
+    func setupGradient() {
         gradientView.alpha = 0.1
-        
-        addSubview(gradientView)
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-          
+        addSubview(gradientView)
         gradientView.constraintInto(self)
     }
     

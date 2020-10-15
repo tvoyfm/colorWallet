@@ -39,6 +39,7 @@ class GradientView: UIView {
     lazy var blurView = UIVisualEffectView(effect: blur)
     
     override func layoutSubviews() {
+        
         gradient.frame = bounds
         blurView.frame = bounds
         

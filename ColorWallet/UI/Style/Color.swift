@@ -2,7 +2,6 @@
 //  Colors.swift
 //  SkillTest
 //
-//  Created by BCS QA on 10.10.2020.
 //  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.
 //
 

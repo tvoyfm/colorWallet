@@ -1,7 +1,7 @@
 import UIKit
 
 @IBDesignable
-class AddButton: UIButton {
+class AddMainButton: UIButton {
     
     var buttonColor     = Color.lightGray
     var buttonTintColor = Color.darkBlue
@@ -24,11 +24,6 @@ class AddButton: UIButton {
         backgroundColor     = buttonColor.uiColor
         titleLabel?.font    = buttonFont
         setTitleColor(.gray, for: .highlighted)
-        addTarget(self, action: #selector(push), for: .touchUpInside)
 }
-    
-    @objc func push(){
-        print("pushed")
-    }
 
 }
