@@ -8,20 +8,22 @@
 import Foundation
 
 class Balance {
-    var balance = Double()
+    static let data = Balance()
+    
     let storage = CategoryStorage.data
+    var value = Double()
     
     init() {
-       updateBalance()
+        updateBalance()
     }
     
     func updateBalance() {
-        balance = storage.sum()
+        value = storage.sum()
     }
     
     var formattingBalance: String {
         var b = String()
-        let balanceDouble = String(format: "%.2f", self.balance)
+        let balanceDouble = String(format: "%.2f", value)
         
         b = "\(balanceDouble) ₽"
         return b

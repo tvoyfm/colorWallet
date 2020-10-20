@@ -1,27 +1,27 @@
 //
 //  MainViewController.swift
-//  SkillTest
+//  ColorWallet
 //
 //  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.
 
 import UIKit
 
-class MainViewController: UIViewController {
-    
+class MainViewController: UIViewController{
+
     let storage = CategoryStorage.data
     
 //  Views
-    var balanceView = BalanceView()
-    var categoryView = CategoryView()
-    var addWithdrawButton = AddMainButton(type: .custom)
-    var addCategoryButton = AddSecondButton(type: .custom)
-    
-    var addCategoryVC     = AddCategoryViewController()
-    
+    static var balanceView      = BalanceView()
+    var categoryView            = CategoryView()
+    var addTransactionButton    = AddMainButton(type: .custom)
+    var addCategoryButton       = AddSecondButton(type: .custom)
+//  ViewControllers
+    let addCategoryVC           = AddCategoryViewController()
+    let addTransactionVC        = AddTransactionViewController()
 //  View parameters
 //  -- padding for left and right
-    let paddingLR = CGFloat(15)
-    let paddingInside = CGFloat(10)
+    let paddingLR               = CGFloat(15)
+    let paddingInside           = CGFloat(10)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,73 +30,66 @@ class MainViewController: UIViewController {
         storage.printAll()
     }
     
-// View initialization
     func setupView() {
-        configWithdrawButton()
-        configBalanceView()
-        configCategoryView()
-        configCategoryButton()
+        configAddTransactionButton()
+        configAddCategoryButton()
+        configView()
     }
 
-        func configWithdrawButton() {
-            addWithdrawButton.setTitle("Добавить расходы", for: .normal)
-            addWithdrawButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
-            
-            view.addSubview(addWithdrawButton)
-            NSLayoutConstraint.activate([
-                addWithdrawButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -paddingInside),
-                addWithdrawButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLR),
-                addWithdrawButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -paddingLR),
-                addWithdrawButton.heightAnchor.constraint(equalToConstant: 60)
-            ])
+        func configAddTransactionButton() {
+            addTransactionButton.setTitle("Записать операцию", for: .normal)
+            addTransactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
         }
 
-        func configBalanceView(){
-            balanceView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(balanceView)
-            
-            NSLayoutConstraint.activate([
-                balanceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: paddingInside),
-                balanceView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLR),
-                balanceView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -paddingLR),
-                balanceView.heightAnchor.constraint(equalToConstant: 80)
-            ])
-        }
-
-        func configCategoryView(){
-            categoryView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(categoryView)
-
-            NSLayoutConstraint.activate([
-                categoryView.topAnchor.constraint(equalTo: balanceView.bottomAnchor, constant: paddingInside),
-                categoryView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: paddingLR),
-                categoryView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -paddingLR),
-                categoryView.bottomAnchor.constraint(equalTo: addWithdrawButton.topAnchor, constant: -paddingInside)
-            ])
-        }
-    
-        func configCategoryButton() {
-            view.addSubview(addCategoryButton)
-            NSLayoutConstraint.activate([
-                addCategoryButton.centerYAnchor.constraint(equalTo: categoryView.centerYAnchor),
-                addCategoryButton.centerXAnchor.constraint(equalTo: categoryView.centerXAnchor),
-                addCategoryButton.heightAnchor.constraint(equalToConstant: addCategoryButton.buttonSize),
-                addCategoryButton.widthAnchor.constraint(equalTo: addCategoryButton.heightAnchor)
-            ])
-            
+        func configAddCategoryButton() {
+            addCategoryButton.setTitle("+", for: .normal)
             addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
         }
     
+        // configConstraints
+        func configView() {
+            let safeArea = view.safeAreaLayoutGuide
+            
+            for v in [MainViewController.balanceView, categoryView, addCategoryButton, addTransactionButton] {
+                view.addSubview(v)
+                v.translatesAutoresizingMaskIntoConstraints = false
+            }
+            
+            NSLayoutConstraint.activate([
+            // Balance
+                MainViewController.balanceView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
+                MainViewController.balanceView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+                MainViewController.balanceView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                MainViewController.balanceView.heightAnchor.constraint(equalToConstant: 80),
+            // Category
+                categoryView.topAnchor.constraint(equalTo: MainViewController.balanceView.bottomAnchor, constant: paddingInside),
+                categoryView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+                categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                categoryView.bottomAnchor.constraint(equalTo: addTransactionButton.topAnchor, constant: -paddingInside),
+            // Add category button
+                addCategoryButton.centerXAnchor.constraint(equalTo: categoryView.centerXAnchor),
+                addCategoryButton.bottomAnchor.constraint(equalTo: categoryView.bottomAnchor, constant: -paddingInside),
+                addCategoryButton.heightAnchor.constraint(equalToConstant: addCategoryButton.buttonSize),
+                addCategoryButton.widthAnchor.constraint(equalTo: categoryView.widthAnchor, constant: -paddingInside*2),
+            // Add transaction button
+                addTransactionButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
+                addTransactionButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+                addTransactionButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                addTransactionButton.heightAnchor.constraint(equalToConstant: 60)
+            ])
+        }
+
+    // Buttons actions
     @objc func addCategory(){
         present(addCategoryVC, animated: true, completion: nil)
     }
     
     @objc func addTransaction(){
-    var category = storage.firstCategory()
-    var transaction = Transaction(name: "Auchan", date: NSDate(), sum: 2510.20, category: category)
-
-    balanceView.updateLabelBalance()
-    storage.printAll()
+        present(addTransactionVC, animated: true, completion: nil)
     }
     
+    func update() {
+        MainViewController.balanceView.updateLabelBalance()
+    }
 }
+

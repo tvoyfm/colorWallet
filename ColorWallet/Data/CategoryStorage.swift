@@ -25,14 +25,20 @@ class CategoryStorage {
     func write(_ category: Category) {
        try! realm.write {
             realm.add(category)
-        print("we add \(category)")
+        print("we add \(category) with type: \(category.type.desc)")
         }
     }
     
     func add(transaction: Transaction, to category: Category) {
         try! realm.write {
             category.transactions.append(transaction)
-            category.sum += transaction.sum
+            switch category.type {
+            case .credit:
+                category.sum += transaction.sum
+            case .debit:
+                category.sum -= transaction.sum
+            }
+                
         }
     }
     
@@ -49,8 +55,16 @@ class CategoryStorage {
         let allCategories = realm.objects(Category.self)
         var s = Double()
         
-        for v in allCategories { for el in v.transactions { s += el.sum } }
-       
+        for v in allCategories {
+            for el in v.transactions {
+                switch v.type {
+                case .credit:
+                    s += el.sum
+                case .debit:
+                    s -= el.sum
+                }
+            }
+        }
         return s
     }
     
@@ -61,7 +75,8 @@ class CategoryStorage {
         for v in allCategories {
             print(v.name,
                   v.sum,
-                  v.colorHEX)
+                  v.colorHEX,
+                  v.type.desc)
             
             for el in v.transactions {
                 print(el.inString)

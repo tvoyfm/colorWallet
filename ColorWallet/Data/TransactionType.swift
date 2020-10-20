@@ -6,19 +6,20 @@
 //
 
 import Foundation
+import RealmSwift
 
-public enum TransactionType {
+@objc enum TransactionType: Int, RealmEnum {
+    case debit  = 0
+    case credit = 1
     
-    case debit
-    case credit
-    
-    public var description: String {
-            switch self {
-            case .debit:
-                return "Расходы"
-            case .credit:
-                return "Доходы"
+    public var desc: String {
+    switch self {
+        case .debit:
+            return "Расходы"
+        case .credit:
+            return "Доходы"
         }
     }
+
     
 }

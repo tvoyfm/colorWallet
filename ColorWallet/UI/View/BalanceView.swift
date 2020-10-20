@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable
 class BalanceView: UIView {
     
-    var balance = Balance()
+    var data = Balance.data
     
     var balanceLabel = BalanceLabel()
     var gradientView = GradientView()
@@ -42,7 +42,7 @@ class BalanceView: UIView {
     }
     
     func updateLabelBalance() {
-        balance.updateBalance()
-        balanceLabel.text = balance.formattingBalance
+        data.updateBalance()
+        balanceLabel.text = data.formattingBalance
     }
 }

@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		011D176A25308DAB0039DDDF /* CAGradientLayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011D176925308DAB0039DDDF /* CAGradientLayer+.swift */; };
 		011D176D2530944C0039DDDF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011D176C2530944C0039DDDF /* MainViewController.swift */; };
+		011E6A9D253ABBEF00085490 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6A9C253ABBEF00085490 /* AddTransactionViewController.swift */; };
+		011E6A9F253ACB6B00085490 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6A9E253ACB6B00085490 /* UITextField+.swift */; };
+		011E6AA3253DCB9900085490 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6AA2253DCB9900085490 /* String+.swift */; };
+		011E6AA5253F3B0A00085490 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6AA4253F3B0A00085490 /* CategoryTableViewCell.swift */; };
+		011E6AA7253F404300085490 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 011E6AA6253F404300085490 /* Montserrat-Regular.ttf */; };
 		0140C0E92532375400737474 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0140C0E82532371B00737474 /* Montserrat-Bold.ttf */; };
 		0140C0EC253241DA00737474 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140C0EB253241DA00737474 /* BalanceView.swift */; };
 		0140C0EF253246A100737474 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140C0EE253246A100737474 /* BalanceLabel.swift */; };
 		0140C0F125324DC600737474 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140C0F025324DC600737474 /* CategoryView.swift */; };
 		014DAA2225284F0400983A97 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DAA2125284F0400983A97 /* UIColor+.swift */; };
 		014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DAA2325284F7A00983A97 /* CGFloat+.swift */; };
-		0178C76B2530470F000F4E21 /* CustomSegmentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */; };
 		0178C76D25306F0C000F4E21 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178C76C25306F0C000F4E21 /* GradientView.swift */; };
 		017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */; };
 		017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */; };
@@ -24,7 +28,6 @@
 		017AF6DC24B8C95F00612CD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */; };
 		019468452533726C00989BAB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019468442533726C00989BAB /* Category.swift */; };
 		01AEFDCF25209DAC00EC4B71 /* AddMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDCE25209DAC00EC4B71 /* AddMainButton.swift */; };
-		01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDD22520AB9300EC4B71 /* ClockView.swift */; };
 		01B29E4825334FE500434562 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B29E4725334FE500434562 /* UIView+.swift */; };
 		01B2B29F253384F900FFB0A1 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B2B29E253384F900FFB0A1 /* Transaction.swift */; };
 		01B2B2A12533929700FFB0A1 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B2B2A02533929700FFB0A1 /* Balance.swift */; };
@@ -40,13 +43,17 @@
 /* Begin PBXFileReference section */
 		011D176925308DAB0039DDDF /* CAGradientLayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+.swift"; sourceTree = "<group>"; };
 		011D176C2530944C0039DDDF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		011E6A9C253ABBEF00085490 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		011E6A9E253ACB6B00085490 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		011E6AA2253DCB9900085490 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+.swift"; path = "ColorWallet/Data/String+.swift"; sourceTree = SOURCE_ROOT; };
+		011E6AA4253F3B0A00085490 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		011E6AA6253F404300085490 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		0140C0E82532371B00737474 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		0140C0EB253241DA00737474 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BalanceView.swift; path = ColorWallet/UI/View/BalanceView.swift; sourceTree = SOURCE_ROOT; };
 		0140C0EE253246A100737474 /* BalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLabel.swift; sourceTree = "<group>"; };
 		0140C0F025324DC600737474 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		014DAA2125284F0400983A97 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		014DAA2325284F7A00983A97 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
-		0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentionView.swift; sourceTree = "<group>"; };
 		0178C76C25306F0C000F4E21 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		017AF6CC24B8C95F00612CD6 /* ColorWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +64,6 @@
 		017AF6DD24B8C95F00612CD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		019468442533726C00989BAB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		01AEFDCE25209DAC00EC4B71 /* AddMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMainButton.swift; sourceTree = "<group>"; };
-		01AEFDD22520AB9300EC4B71 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		01B29E4725334FE500434562 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		01B2B29E253384F900FFB0A1 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		01B2B2A02533929700FFB0A1 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
@@ -89,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				0140C0E82532371B00737474 /* Montserrat-Bold.ttf */,
+				011E6AA6253F404300085490 /* Montserrat-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -98,6 +105,7 @@
 			children = (
 				011D176C2530944C0039DDDF /* MainViewController.swift */,
 				01B68ABB2538B7D6008468CB /* AddCategoryViewController.swift */,
+				011E6A9C253ABBEF00085490 /* AddTransactionViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -106,8 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				0178C76C25306F0C000F4E21 /* GradientView.swift */,
-				0178C76A2530470F000F4E21 /* CustomSegmentionView.swift */,
-				01AEFDD22520AB9300EC4B71 /* ClockView.swift */,
+				011E6AA4253F3B0A00085490 /* CategoryTableViewCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -123,10 +130,12 @@
 		014DAA2025284EEF00983A97 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				011E6AA2253DCB9900085490 /* String+.swift */,
 				014DAA2125284F0400983A97 /* UIColor+.swift */,
 				014DAA2325284F7A00983A97 /* CGFloat+.swift */,
 				011D176925308DAB0039DDDF /* CAGradientLayer+.swift */,
 				01B29E4725334FE500434562 /* UIView+.swift */,
+				011E6A9E253ACB6B00085490 /* UITextField+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 				0140C0E92532375400737474 /* Montserrat-Bold.ttf in Resources */,
 				017AF6DC24B8C95F00612CD6 /* LaunchScreen.storyboard in Resources */,
 				017AF6D924B8C95F00612CD6 /* Assets.xcassets in Resources */,
+				011E6AA7253F404300085490 /* Montserrat-Regular.ttf in Resources */,
 				017AF6D724B8C95F00612CD6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,19 +370,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				011E6A9D253ABBEF00085490 /* AddTransactionViewController.swift in Sources */,
 				01D20D5C2531A5DB001D2F16 /* Color.swift in Sources */,
 				019468452533726C00989BAB /* Category.swift in Sources */,
 				011D176D2530944C0039DDDF /* MainViewController.swift in Sources */,
 				01B29E4825334FE500434562 /* UIView+.swift in Sources */,
+				011E6AA5253F3B0A00085490 /* CategoryTableViewCell.swift in Sources */,
 				01B2B2A12533929700FFB0A1 /* Balance.swift in Sources */,
+				011E6A9F253ACB6B00085490 /* UITextField+.swift in Sources */,
 				0140C0EF253246A100737474 /* BalanceLabel.swift in Sources */,
 				01B68ABA2538B435008468CB /* AddSecondButton.swift in Sources */,
 				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
+				011E6AA3253DCB9900085490 /* String+.swift in Sources */,
 				01B68AB52538B206008468CB /* CategoryStorage.swift in Sources */,
-				01AEFDD32520AB9300EC4B71 /* ClockView.swift in Sources */,
 				01B68ABC2538B7D6008468CB /* AddCategoryViewController.swift in Sources */,
 				014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */,
-				0178C76B2530470F000F4E21 /* CustomSegmentionView.swift in Sources */,
 				01B2B29F253384F900FFB0A1 /* Transaction.swift in Sources */,
 				017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */,
 				0140C0F125324DC600737474 /* CategoryView.swift in Sources */,

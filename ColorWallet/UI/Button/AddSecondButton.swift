@@ -4,9 +4,10 @@ class AddSecondButton: UIButton {
     
     var buttonColor     = Color.lightGray
     var buttonTintColor = Color.darkBlue
-    var buttonFont      = UIFont(name: "Montserrat-Bold", size: 20)
+    var buttonSize      = CGFloat(50)
+    var buttonFont      = UIFont(name: "Montserrat-Bold", size: 35)
     var cornerRadius:   CGFloat = 15
-    var buttonSize      = CGFloat(150)
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -1,5 +1,5 @@
 //
-//  Withdraw.swift
+//  Transaction.swift
 //  ColorWallet
 //
 //  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.

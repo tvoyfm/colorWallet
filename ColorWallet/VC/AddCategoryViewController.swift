@@ -12,6 +12,7 @@ class AddCategoryViewController: UIViewController {
     var nameTextField       = MainTextField()
     var typeSegmentControl  = UISegmentedControl()
     var acceptButton        = AddMainButton()
+//    var colorPicker         = UIColorPick
     
     let storage = CategoryStorage.data
     var type: TransactionType?
@@ -32,7 +33,7 @@ class AddCategoryViewController: UIViewController {
 
         
     func configTypeSegmentControl() {
-        let items = [TransactionType.credit.description, TransactionType.debit.description]
+        let items = [TransactionType.credit.desc, TransactionType.debit.desc]
         typeSegmentControl = UISegmentedControl(items: items)
         typeSegmentControl.addTarget(self, action: #selector(typeDidChange(_:)), for: .valueChanged)
         
@@ -42,7 +43,6 @@ class AddCategoryViewController: UIViewController {
     
     func configNameTextField() {
         view.addSubview(nameTextField)
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.placeholder = "Укажите название категории"
     }
     
@@ -77,19 +77,23 @@ class AddCategoryViewController: UIViewController {
         let text = nameTextField.text
         
         if (text != "" && type != nil) {
-            let category = Category(name: text!, color: .random(), type: type!)
+            let category = Category(name: text!, color: .random(), transactionType: type!)
             storage.write(category)
+            
+            dismiss(animated: true, completion: nil)
         }
     }
     
     @objc func typeDidChange(_ segmControl: UISegmentedControl){
         switch segmControl.selectedSegmentIndex{
-        case 0: // Задание 1
+        case 0: 
             type = .credit
-        case 1: // Задание 2
+        case 1:
             type = .debit
         default:
             print("nil type :(")
         }
     }
+    
+
 }

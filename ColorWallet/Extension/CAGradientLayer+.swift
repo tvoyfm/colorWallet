@@ -1,6 +1,6 @@
 //
 //  CAGradientLayer+.swift
-//  SkillTest
+//  ColorWallet
 //
 //  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.
 //

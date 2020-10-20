@@ -12,14 +12,14 @@ class Category: Object {
     @objc dynamic var name          : String            = ""
     @objc dynamic var sum           : Double            = 0
     @objc dynamic var colorHEX      : String            = UIColor.black.toHexString()
-    var type                        : TransactionType   = .credit
+    @objc dynamic var type          : TransactionType   = .debit
     var transactions                : List<Transaction> = .init()
 
-    convenience init (name: String, color: UIColor, type: TransactionType) {
+    convenience init (name: String, color: UIColor, transactionType: TransactionType) {
         self.init()
         self.name           = name
         self.colorHEX       = color.toHexString()
-        self.type           = type
+        self.type           = transactionType
         self.transactions   = List<Transaction>()
         self.sum            = Double(0)
     }
