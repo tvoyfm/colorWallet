@@ -13,23 +13,16 @@ class CategoryStorage {
     static let data = CategoryStorage()
     
     private let realm = try! Realm()
-    
-    func firstCategory() -> Category {
-        var c: Category
-        
-        c = realm.objects(Category.self).first!
-        
-        return c
-    }
-    
-    func write(_ category: Category) {
+
+//MARK: - Functions
+    func addCategory(_ category: Category) {
        try! realm.write {
             realm.add(category)
         print("we add \(category) with type: \(category.type.desc)")
         }
     }
     
-    func add(transaction: Transaction, to category: Category) {
+    func addTransaction(transaction: Transaction, to category: Category) {
         try! realm.write {
             category.transactions.append(transaction)
             switch category.type {
@@ -41,34 +34,42 @@ class CategoryStorage {
                 
         }
     }
-    
-    func remove(transaction: Transaction, from category: Category) {
-        try! realm.write {
-            print("try to remove")
-//            category.transactions.remove(at: 0)
-//            category.sum -= transaction.sum
-        }
-    }
-    
-// return sum of all categories
-    func sum() -> Double {
+
+    func sum(_ c: Category?) -> Double {
         let allCategories = realm.objects(Category.self)
         var s = Double()
         
-        for v in allCategories {
-            for el in v.transactions {
-                switch v.type {
-                case .credit:
-                    s += el.sum
-                case .debit:
-                    s -= el.sum
+            for v in allCategories {
+                for el in v.transactions {
+                    if c != nil {
+                        if el.category == c {
+                            switch v.type {
+                            case .credit:
+                                s += el.sum
+                            case .debit:
+                                s -= el.sum
+                            }
+                        }
+                    } else {
+                        switch v.type {
+                        case .credit:
+                            s += el.sum
+                        case .debit:
+                            s -= el.sum
+                        }
+                    }
                 }
             }
-        }
+        
         return s
     }
     
-// Utilities
+    func allCategories() -> [Category] {
+        let array = realm.objects(Category.self).toArray(ofType: Category.self) as [Category]
+        return array
+    }
+   
+//MARK: - Utilities
     func printAll() {
         print("-----------------------")
         let allCategories = realm.objects(Category.self)
@@ -83,5 +84,26 @@ class CategoryStorage {
             }
         }
         print("-----------------------")
+    }
+    
+    func firstCategory() -> Category {
+        var c: Category
+        
+        c = realm.objects(Category.self).first!
+        
+        return c
+    }
+}
+
+extension Results {
+    func toArray<T>(ofType: T.Type) -> [T] {
+        var array = [T]()
+        for i in 0 ..< count {
+            if let result = self[i] as? T {
+                array.append(result)
+            }
+        }
+
+        return array
     }
 }

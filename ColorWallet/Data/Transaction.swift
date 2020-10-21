@@ -23,7 +23,7 @@ class Transaction: Object {
         self.type       = category.type
         self.category   = category
         
-        CategoryStorage.data.add(transaction: self, to: category)
+        CategoryStorage.data.addTransaction(transaction: self, to: category)
     }
     
     var inString: String{

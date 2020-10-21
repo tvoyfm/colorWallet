@@ -7,9 +7,7 @@
 import UIKit
 
 class MainViewController: UIViewController{
-
-    let storage = CategoryStorage.data
-    
+//MARK: - Objects
 //  Views
     static var balanceView      = BalanceView()
     var categoryView            = CategoryView()
@@ -18,11 +16,14 @@ class MainViewController: UIViewController{
 //  ViewControllers
     let addCategoryVC           = AddCategoryViewController()
     let addTransactionVC        = AddTransactionViewController()
-//  View parameters
+//  Parameters
 //  -- padding for left and right
     let paddingLR               = CGFloat(15)
     let paddingInside           = CGFloat(10)
-    
+//  -- data storage
+    let storage = CategoryStorage.data
+ 
+//MARK: - Run
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -35,7 +36,8 @@ class MainViewController: UIViewController{
         configAddCategoryButton()
         configView()
     }
-
+    
+//MARK: - Config view
         func configAddTransactionButton() {
             addTransactionButton.setTitle("Записать операцию", for: .normal)
             addTransactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
@@ -79,7 +81,7 @@ class MainViewController: UIViewController{
             ])
         }
 
-    // Buttons actions
+//MARK: - Buttons methods
     @objc func addCategory(){
         present(addCategoryVC, animated: true, completion: nil)
     }

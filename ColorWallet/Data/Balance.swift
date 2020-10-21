@@ -18,7 +18,7 @@ class Balance {
     }
     
     func updateBalance() {
-        value = storage.sum()
+        value = storage.sum(nil)
     }
     
     var formattingBalance: String {

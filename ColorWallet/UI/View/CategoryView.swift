@@ -11,6 +11,8 @@ import UIKit
 @IBDesignable
 class CategoryView: UIView {
     
+    let categories = CategoryStorage.data.allCategories()
+    
     private var timer       = Timer()
     private var timeAnim    = Double(3)
 
@@ -69,25 +71,16 @@ class CategoryView: UIView {
 
 extension CategoryView: UITableViewDataSource, UITableViewDelegate{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-        //return settings.count
-    }
-    
-    // Return the number of rows for the table.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-        //return settings[section].count
-    }  
+        return categories.count
+    }
 
-    // Provide a cell object for each row.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // Fetch a cell of the appropriate type.
        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         
-        cell.nameLabel.text  = "Test string long long long"
-        cell.sumLabel.text   = "100 000 000 P"
-        cell.colorView.backgroundColor = .red
+        cell.nameLabel.text  = categories[indexPath.row].name
+        cell.sumLabel.text   = String(categories[indexPath.row].sum)
+        cell.colorView.backgroundColor = UIColor(hexString: categories[indexPath.row].colorHEX)
            
        return cell
     }

@@ -78,7 +78,7 @@ class AddCategoryViewController: UIViewController {
         
         if (text != "" && type != nil) {
             let category = Category(name: text!, color: .random(), transactionType: type!)
-            storage.write(category)
+            storage.addCategory(category)
             
             dismiss(animated: true, completion: nil)
         }

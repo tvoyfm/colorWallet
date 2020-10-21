@@ -7,21 +7,24 @@
 
 import UIKit
 
-class AddTransactionViewController: UIViewController {
+class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
 // Views
     var nameTextField       = MainTextField()
     var sumTextField        = MainTextField()
     var dateTextField       = MainTextField()
-    //var timeChooseView
-    //var categoryView
+    var categoryTextField   = MainTextField()
     var acceptButton        = AddMainButton()
 
 // Parameters
-    let storage         = CategoryStorage.data
+    let array           = CategoryStorage.data.allCategories()
     let balance         = Balance.data
     let datePicker      = UIDatePicker()
+    let categoryPicker  = UIPickerView()
+    
+// For add
     var dateTransaction = NSDate()
+    var categoryTransaction = Category()
 
     //  -- padding for left and right
     let paddingLR       = CGFloat(15)
@@ -36,6 +39,7 @@ class AddTransactionViewController: UIViewController {
         configSumTextField()
         configAcceptButton()
         configDateTextField()
+        configCategoryTextField()
         
         constraintViews()
     }
@@ -63,10 +67,18 @@ class AddTransactionViewController: UIViewController {
         acceptButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
     }
     
+    func configCategoryTextField() {
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
+        
+        categoryTextField.placeholder   = "Категория"
+        categoryTextField.inputView = categoryPicker
+    }
+    
     func constraintViews(){
         let safeArea = view.safeAreaLayoutGuide
         
-        for v in [nameTextField, sumTextField, dateTextField, acceptButton] {
+        for v in [nameTextField, sumTextField, dateTextField, categoryTextField, acceptButton] {
             view.addSubview(v)
             v.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -90,6 +102,12 @@ class AddTransactionViewController: UIViewController {
             dateTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
             dateTextField.heightAnchor.constraint(equalToConstant: 35),
             
+            categoryTextField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            categoryTextField.topAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: paddingInside),
+            categoryTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+            categoryTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+            categoryTextField.heightAnchor.constraint(equalToConstant: 35),
+            
             acceptButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
             acceptButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             acceptButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
@@ -111,7 +129,7 @@ class AddTransactionViewController: UIViewController {
         let date    = dateTextField.text
         
         if (text != "" && sum != "" && date != nil) {
-            _ = Transaction(name: text!, date: dateTransaction, sum: (sum?.doubleValue)!, category: storage.firstCategory())
+            _ = Transaction(name: text!, date: dateTransaction, sum: (sum?.doubleValue)!, category: categoryTransaction)
             MainViewController.balanceView.updateLabelBalance()
         } else {
             print("no thanks")
@@ -120,4 +138,22 @@ class AddTransactionViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+//MARK: - UIPickerExtension
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return array.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text  = array[row].name
+        categoryTransaction     = array[row].self
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return array[row].name
+    }
+    
 }
