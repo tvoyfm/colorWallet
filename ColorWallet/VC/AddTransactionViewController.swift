@@ -17,7 +17,7 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     var acceptButton        = AddMainButton()
 
 // Parameters
-    let array           = CategoryStorage.data.allCategories()
+    var array           : [Category] = []
     let balance         = Balance.data
     let datePicker      = UIDatePicker()
     let categoryPicker  = UIPickerView()
@@ -32,7 +32,6 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         
         configNameTextField()
@@ -42,6 +41,10 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         configCategoryTextField()
         
         constraintViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        array = CategoryStorage.data.allCategories()
     }
 
     
@@ -130,12 +133,11 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         if (text != "" && sum != "" && date != nil) {
             _ = Transaction(name: text!, date: dateTransaction, sum: (sum?.doubleValue)!, category: categoryTransaction)
-            MainViewController.balanceView.updateLabelBalance()
+            MainViewController.updateView()
+            dismiss(animated: true, completion: nil)
         } else {
             print("no thanks")
         }
-        
-        dismiss(animated: true, completion: nil)
     }
 
 //MARK: - UIPickerExtension

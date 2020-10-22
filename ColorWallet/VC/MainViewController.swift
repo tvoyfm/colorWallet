@@ -6,11 +6,12 @@
 
 import UIKit
 
-class MainViewController: UIViewController{
+class MainViewController: UIViewController {
+  
 //MARK: - Objects
 //  Views
     static var balanceView      = BalanceView()
-    var categoryView            = CategoryView()
+    static var categoryView     = CategoryView()
     var addTransactionButton    = AddMainButton(type: .custom)
     var addCategoryButton       = AddSecondButton(type: .custom)
 //  ViewControllers
@@ -50,29 +51,32 @@ class MainViewController: UIViewController{
     
         // configConstraints
         func configView() {
+            let balance = MainViewController.balanceView
+            let category = MainViewController.categoryView
+            
             let safeArea = view.safeAreaLayoutGuide
             
-            for v in [MainViewController.balanceView, categoryView, addCategoryButton, addTransactionButton] {
+            for v in [balance, category, addCategoryButton, addTransactionButton] {
                 view.addSubview(v)
                 v.translatesAutoresizingMaskIntoConstraints = false
             }
             
             NSLayoutConstraint.activate([
             // Balance
-                MainViewController.balanceView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
-                MainViewController.balanceView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
-                MainViewController.balanceView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-                MainViewController.balanceView.heightAnchor.constraint(equalToConstant: 80),
+                balance.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
+                balance.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+                balance.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                balance.heightAnchor.constraint(equalToConstant: 80),
             // Category
-                categoryView.topAnchor.constraint(equalTo: MainViewController.balanceView.bottomAnchor, constant: paddingInside),
-                categoryView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
-                categoryView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-                categoryView.bottomAnchor.constraint(equalTo: addTransactionButton.topAnchor, constant: -paddingInside),
+                category.topAnchor.constraint(equalTo: balance.bottomAnchor, constant: paddingInside),
+                category.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+                category.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                category.bottomAnchor.constraint(equalTo: addTransactionButton.topAnchor, constant: -paddingInside),
             // Add category button
-                addCategoryButton.centerXAnchor.constraint(equalTo: categoryView.centerXAnchor),
-                addCategoryButton.bottomAnchor.constraint(equalTo: categoryView.bottomAnchor, constant: -paddingInside),
+                addCategoryButton.centerXAnchor.constraint(equalTo: category.centerXAnchor),
+                addCategoryButton.bottomAnchor.constraint(equalTo: category.bottomAnchor, constant: -paddingInside),
                 addCategoryButton.heightAnchor.constraint(equalToConstant: addCategoryButton.buttonSize),
-                addCategoryButton.widthAnchor.constraint(equalTo: categoryView.widthAnchor, constant: -paddingInside*2),
+                addCategoryButton.widthAnchor.constraint(equalTo: category.widthAnchor, constant: -paddingInside*2),
             // Add transaction button
                 addTransactionButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
                 addTransactionButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
@@ -90,8 +94,10 @@ class MainViewController: UIViewController{
         present(addTransactionVC, animated: true, completion: nil)
     }
     
-    func update() {
-        MainViewController.balanceView.updateLabelBalance()
+    static func updateView() {
+        balanceView.updateLabelBalance()
+        categoryView.tableView.reloadData()
+        print(#function)
     }
 }
 

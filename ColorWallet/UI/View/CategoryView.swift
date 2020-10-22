@@ -11,8 +11,6 @@ import UIKit
 @IBDesignable
 class CategoryView: UIView {
     
-    let categories = CategoryStorage.data.allCategories()
-    
     private var timer       = Timer()
     private var timeAnim    = Double(3)
 
@@ -51,11 +49,11 @@ class CategoryView: UIView {
     @objc func updateColors(){
         if backgroundColor == color1{
             UIView.animate(withDuration: timeAnim, animations: {
-                self.backgroundColor = self.color2
+                self.layer.backgroundColor = self.color2.cgColor
             })
-        } else{
+        } else {
             UIView.animate(withDuration: timeAnim, animations: {
-                self.backgroundColor = self.color1
+                self.layer.backgroundColor = self.color1.cgColor
             })
         }
     }
@@ -72,11 +70,13 @@ class CategoryView: UIView {
 extension CategoryView: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let categories = CategoryStorage.data.allCategories()
         return categories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
+        let categories = CategoryStorage.data.allCategories()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         
         cell.nameLabel.text  = categories[indexPath.row].name
         cell.sumLabel.text   = String(categories[indexPath.row].sum)
