@@ -46,7 +46,6 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     override func viewWillAppear(_ animated: Bool) {
         array = CategoryStorage.data.allCategories()
     }
-
     
     func configNameTextField() {
         nameTextField.placeholder = "Название"

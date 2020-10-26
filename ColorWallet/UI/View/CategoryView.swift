@@ -66,7 +66,7 @@ class CategoryView: UIView {
         gradientView.constraintInto(self)
     }
 }
-
+//MARK: - TableView DataSource & Delegate
 extension CategoryView: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

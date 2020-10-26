@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01024E3E2546F954002A491B /* NSDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01024E3D2546F954002A491B /* NSDate+.swift */; };
 		011D176A25308DAB0039DDDF /* CAGradientLayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011D176925308DAB0039DDDF /* CAGradientLayer+.swift */; };
 		011D176D2530944C0039DDDF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011D176C2530944C0039DDDF /* MainViewController.swift */; };
 		011E6A9D253ABBEF00085490 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6A9C253ABBEF00085490 /* AddTransactionViewController.swift */; };
@@ -14,6 +15,8 @@
 		011E6AA3253DCB9900085490 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6AA2253DCB9900085490 /* String+.swift */; };
 		011E6AA5253F3B0A00085490 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E6AA4253F3B0A00085490 /* CategoryTableViewCell.swift */; };
 		011E6AA7253F404300085490 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 011E6AA6253F404300085490 /* Montserrat-Regular.ttf */; };
+		01327C9E25417B9600133F3F /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01327C9D25417B9600133F3F /* ChartsViewController.swift */; };
+		01327CA3254689F700133F3F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01327CA2254689F700133F3F /* ChartView.swift */; };
 		0140C0E92532375400737474 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0140C0E82532371B00737474 /* Montserrat-Bold.ttf */; };
 		0140C0EC253241DA00737474 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140C0EB253241DA00737474 /* BalanceView.swift */; };
 		0140C0EF253246A100737474 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140C0EE253246A100737474 /* BalanceLabel.swift */; };
@@ -41,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01024E3D2546F954002A491B /* NSDate+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+.swift"; sourceTree = "<group>"; };
 		011D176925308DAB0039DDDF /* CAGradientLayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+.swift"; sourceTree = "<group>"; };
 		011D176C2530944C0039DDDF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		011E6A9C253ABBEF00085490 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +52,8 @@
 		011E6AA2253DCB9900085490 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+.swift"; path = "ColorWallet/Data/String+.swift"; sourceTree = SOURCE_ROOT; };
 		011E6AA4253F3B0A00085490 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		011E6AA6253F404300085490 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		01327C9D25417B9600133F3F /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
+		01327CA2254689F700133F3F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		0140C0E82532371B00737474 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		0140C0EB253241DA00737474 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BalanceView.swift; path = ColorWallet/UI/View/BalanceView.swift; sourceTree = SOURCE_ROOT; };
 		0140C0EE253246A100737474 /* BalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLabel.swift; sourceTree = "<group>"; };
@@ -106,15 +112,23 @@
 				011D176C2530944C0039DDDF /* MainViewController.swift */,
 				01B68ABB2538B7D6008468CB /* AddCategoryViewController.swift */,
 				011E6A9C253ABBEF00085490 /* AddTransactionViewController.swift */,
+				01327C9D25417B9600133F3F /* ChartsViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		01327C9F2545C98800133F3F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				011E6AA4253F3B0A00085490 /* CategoryTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		0140C0EA253241B100737474 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				0178C76C25306F0C000F4E21 /* GradientView.swift */,
-				011E6AA4253F3B0A00085490 /* CategoryTableViewCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -136,6 +150,7 @@
 				011D176925308DAB0039DDDF /* CAGradientLayer+.swift */,
 				01B29E4725334FE500434562 /* UIView+.swift */,
 				011E6A9E253ACB6B00085490 /* UITextField+.swift */,
+				01024E3D2546F954002A491B /* NSDate+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -194,6 +209,7 @@
 				01B68ABD2538C49E008468CB /* TextField */,
 				0140C0ED2532467A00737474 /* Label */,
 				01D20D582531A576001D2F16 /* Style */,
+				01327C9F2545C98800133F3F /* Cell */,
 				01AEFDD12520AB6A00EC4B71 /* View */,
 				01AEFDD02520AB6000EC4B71 /* Button */,
 			);
@@ -215,6 +231,7 @@
 				0140C0EA253241B100737474 /* Custom */,
 				0140C0EB253241DA00737474 /* BalanceView.swift */,
 				0140C0F025324DC600737474 /* CategoryView.swift */,
+				01327CA2254689F700133F3F /* ChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -383,6 +400,8 @@
 				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
 				011E6AA3253DCB9900085490 /* String+.swift in Sources */,
 				01B68AB52538B206008468CB /* CategoryStorage.swift in Sources */,
+				01327C9E25417B9600133F3F /* ChartsViewController.swift in Sources */,
+				01024E3E2546F954002A491B /* NSDate+.swift in Sources */,
 				01B68ABC2538B7D6008468CB /* AddCategoryViewController.swift in Sources */,
 				014DAA2425284F7A00983A97 /* CGFloat+.swift in Sources */,
 				01B2B29F253384F900FFB0A1 /* Transaction.swift in Sources */,
@@ -392,6 +411,7 @@
 				017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */,
 				011D176A25308DAB0039DDDF /* CAGradientLayer+.swift in Sources */,
 				01B68ABF2538C4C4008468CB /* MainTextField.swift in Sources */,
+				01327CA3254689F700133F3F /* ChartView.swift in Sources */,
 				01AEFDCF25209DAC00EC4B71 /* AddMainButton.swift in Sources */,
 				0178C76D25306F0C000F4E21 /* GradientView.swift in Sources */,
 				0140C0EC253241DA00737474 /* BalanceView.swift in Sources */,

@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
 //  ViewControllers
     let addCategoryVC           = AddCategoryViewController()
     let addTransactionVC        = AddTransactionViewController()
+    let chartsVC                = ChartsViewController()
 //  Parameters
 //  -- padding for left and right
     let paddingLR               = CGFloat(15)
@@ -24,21 +25,21 @@ class MainViewController: UIViewController {
 //  -- data storage
     let storage = CategoryStorage.data
  
-//MARK: - Run
+//MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
         storage.printAll()
     }
     
     func setupView() {
         configAddTransactionButton()
         configAddCategoryButton()
+        configBalanceView()
         configView()
     }
     
-//MARK: - Config view
+//MARK: - Config
         func configAddTransactionButton() {
             addTransactionButton.setTitle("Записать операцию", for: .normal)
             addTransactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
@@ -47,6 +48,11 @@ class MainViewController: UIViewController {
         func configAddCategoryButton() {
             addCategoryButton.setTitle("+", for: .normal)
             addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
+        }
+    
+        func configBalanceView() {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(chartPresent))
+            MainViewController.balanceView.addGestureRecognizer(gesture)
         }
     
         // configConstraints
@@ -85,8 +91,8 @@ class MainViewController: UIViewController {
             ])
         }
 
-//MARK: - Buttons methods
-    @objc func addCategory(){
+//MARK: - Actions
+    @objc func addCategory() {
         present(addCategoryVC, animated: true, completion: nil)
     }
     
@@ -94,10 +100,17 @@ class MainViewController: UIViewController {
         present(addTransactionVC, animated: true, completion: nil)
     }
     
+    @objc func chartPresent() {
+        present(chartsVC, animated: true, completion: nil)
+    }
+    
+//MARK: - Update
     static func updateView() {
         balanceView.updateLabelBalance()
         categoryView.tableView.reloadData()
         print(#function)
     }
+    
+
 }
 

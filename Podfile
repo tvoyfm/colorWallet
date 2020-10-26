@@ -6,6 +6,7 @@ target 'ColorWallet' do
   use_frameworks!
 
   # Pods for ColorWallet
+  pod 'Charts'
   pod 'RealmSwift'
 
 end

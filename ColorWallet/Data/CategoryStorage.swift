@@ -15,6 +15,7 @@ class CategoryStorage {
     private let realm = try! Realm()
 
 //MARK: - Functions
+    // Write new category
     func addCategory(_ category: Category) {
        try! realm.write {
             realm.add(category)
@@ -22,6 +23,7 @@ class CategoryStorage {
         }
     }
     
+    // Write new transaction in category
     func addTransaction(transaction: Transaction, to category: Category) {
         try! realm.write {
             category.transactions.append(transaction)
@@ -34,7 +36,8 @@ class CategoryStorage {
                 
         }
     }
-
+    
+    // Return sum all categories or 1 category
     func sum(_ c: Category?) -> Double {
         let allCategories = realm.objects(Category.self)
         var s = Double()
@@ -64,10 +67,66 @@ class CategoryStorage {
         return s
     }
     
+    // Return category array
     func allCategories() -> [Category] {
         let array = realm.objects(Category.self).toArray(ofType: Category.self) as [Category]
         return array
     }
+    
+    func allCategoriesByDays(_ days: Int?) -> [Category] {
+        let transactions = allTransactions()
+        let dateX  = NSDate().add(days: days ?? 0)
+        
+        var array = [Category]()
+        
+        if days == nil {
+           array = realm.objects(Category.self).toArray(ofType: Category.self) as [Category]
+        } else {
+            //print("we try to calculate from \(dateX)")
+            for v in transactions {
+                if (v.date as Date) > dateX {
+                    
+                    //print(v.date, v.name, v.sum, v.category!.name)
+                    var hasCategory = false
+                    
+                    if array.isEmpty {
+                        let c = Category(name: v.category!.name, color: UIColor.init(hexString: v.category!.colorHEX), transactionType: v.category!.type)
+                        c.sum += v.sum
+                        array.append(c)
+                    } else {
+                        array.forEach({
+                            if v.category!.name == $0.name {
+                                if v.type == .debit {
+                                 $0.sum += v.sum
+                                }
+                                
+                                hasCategory = true
+                            }
+                        })
+                        if hasCategory == false {
+                            let c = Category(name: v.category!.name, color: UIColor.init(hexString: v.category!.colorHEX), transactionType: v.category!.type)
+                            c.sum += v.sum
+                            array.append(c)
+                        }
+                    }
+                }
+            }
+        }
+        return array
+    }
+    
+    func allTransactions() -> [Transaction] {
+        let allCategories = realm.objects(Category.self)
+        var arr = [Transaction]()
+
+        for v in allCategories {
+            for el in v.transactions {
+                arr.append(el)
+        }
+        }
+        return arr
+    }
+    
    
 //MARK: - Utilities
     func printAll() {
@@ -85,16 +144,8 @@ class CategoryStorage {
         }
         print("-----------------------")
     }
-    
-    func firstCategory() -> Category {
-        var c: Category
-        
-        c = realm.objects(Category.self).first!
-        
-        return c
-    }
 }
-
+//MARK: - Extensions for Realm
 extension Results {
     func toArray<T>(ofType: T.Type) -> [T] {
         var array = [T]()
@@ -103,7 +154,6 @@ extension Results {
                 array.append(result)
             }
         }
-
         return array
     }
 }
