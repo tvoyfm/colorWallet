@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
 //MARK: - Objects
 //  Views
@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
         configAddTransactionButton()
         configAddCategoryButton()
         configBalanceView()
+        configCategoryView()
         configView()
     }
     
@@ -54,6 +55,12 @@ class MainViewController: UIViewController {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(chartPresent))
             MainViewController.balanceView.addGestureRecognizer(gesture)
         }
+
+    func configCategoryView() {
+        MainViewController.categoryView.tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
+        MainViewController.categoryView.tableView.dataSource = self
+        MainViewController.categoryView.tableView.delegate = self
+    }
     
         // configConstraints
         func configView() {
@@ -107,10 +114,37 @@ class MainViewController: UIViewController {
 //MARK: - Update
     static func updateView() {
         balanceView.updateLabelBalance()
+        categoryView.updateCategories()
         categoryView.tableView.reloadData()
-        print(#function)
     }
     
+//MARK: - TableView DataSource & Delegate
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MainViewController.categoryView.categories.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
+        
+        let c = MainViewController.categoryView.categories[indexPath.row]
+        
+        cell.nameLabel.text  = c.name
+        cell.sumLabel.text   = c.formattedSum
+        cell.colorView.backgroundColor = UIColor(hexString: c.colorHEX)
+        cell.category = c
+        
+       return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! CategoryTableViewCell
+        let vc = TransactionViewController()
+        self.present(vc, animated: true, completion: nil)
+        vc.category = cell.category!
+    }
 
 }
+
 

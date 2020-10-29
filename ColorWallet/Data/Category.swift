@@ -23,4 +23,22 @@ class Category: Object {
         self.transactions   = List<Transaction>()
         self.sum            = Double(0)
     }
+    
+    var formattedSum: String {
+        var result: String
+        
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .decimal
+        let s = formatter.string(from: NSNumber(value: sum))!
+        
+        switch type {
+            case .debit:
+                result = "\(s) ₽"
+            case .credit:
+                result = "+\(s) ₽"
+            }
+        return result
+    }
+
 }

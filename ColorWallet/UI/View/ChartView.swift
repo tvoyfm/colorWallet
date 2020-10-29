@@ -10,15 +10,22 @@ import UIKit
 import Charts
 
 class ChartView: UIView {
-
+    
     //MARK: - Objects
     var categories  : [Category] = CategoryStorage.data.allCategories()
     var pieView     = PieChartView()
+    var dataType    : TransactionType
     
-    override func layoutSubviews() {
+    init(type: TransactionType) {
+        self.dataType = type
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         setupChart()
-        initData()
-        //addBlur()
+        configData()
+    }
+    
+    required init?(coder: NSCoder) {
+        self.dataType = .debit
+        super.init(coder: coder)
     }
     
     //MARK: - Init
@@ -32,18 +39,26 @@ class ChartView: UIView {
         self.addSubview(pieView)
         pieView.translatesAutoresizingMaskIntoConstraints = false
         pieView.constraintInto(self)
-        //pieView.animate(xAxisDuration: 1)
     }
 
-    func initData() {
+    func configData() {
         var entries         : [PieChartDataEntry] = Array()
         var entriesColors   : [NSUIColor] = Array()
         
         for v in categories {
-            if v.type == .debit {
-                let sum = abs(v.sum)
-                entries.append(PieChartDataEntry(value: sum, label: v.name))
-                entriesColors.append(NSUIColor.init(hexString: v.colorHEX))
+            switch dataType {
+            case .debit:
+                if v.type == .debit {
+                    let sum = abs(v.sum)
+                    entries.append(PieChartDataEntry(value: sum, label: v.name))
+                    entriesColors.append(NSUIColor.init(hexString: v.colorHEX))
+                }
+            case .credit:
+                if v.type == .credit {
+                    let sum = abs(v.sum)
+                    entries.append(PieChartDataEntry(value: sum, label: v.name))
+                    entriesColors.append(NSUIColor.init(hexString: v.colorHEX))
+                }
             }
         }
 
@@ -59,14 +74,18 @@ class ChartView: UIView {
             return blur
         }()
         
-        var blurView = UIVisualEffectView(effect: blur)
+        let blurView = UIVisualEffectView(effect: blur)
         blurView.frame = bounds
         self.addSubview(blurView)
     }
     
-    func updateByDays(days: Int?){
+//MARK: - UPDATE
+    func updateByDays(_ days: Int?){
         categories = CategoryStorage.data.allCategoriesByDays(days)
-        initData()
-        self.layoutSubviews()
+        configData()
+    }
+    
+    override func layoutIfNeeded() {
+        configData()
     }
 }

@@ -1,27 +1,24 @@
 //
-//  ChartsViewController.swift
+//  TransactionViewController.swift
 //  ColorWallet
 //
+//  Created by BCS QA on 28.10.2020.
 //  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.
 //
 
-//    Экран графика расходов/доходов
-//    - Можно выбрать промежуток: неделя/месяц/квартал/всё время
-//    - Для выбранного промежутка показывается график расходов и доходов по дням
-
 import UIKit
 
-class ChartsViewController: UIViewController {
+class TransactionViewController: UIViewController {
+    
 //MARK: - Parameters
     let paddingLR               = CGFloat(15)
     let paddingInside           = CGFloat(10)
-    let chartHeight             = CGFloat(250)
     
 //MARK: - Objects
     var periodSegmentControl    = UISegmentedControl()
-    var debitView               = ChartView(type: .debit)
-    var creditView              = ChartView(type: .credit)
     var transactionView         = TransactionView()
+    var category                = Category()
+    let storage                 = CategoryStorage.data
     
 //MARK: - Init
     override func viewDidLoad() {
@@ -29,6 +26,10 @@ class ChartsViewController: UIViewController {
         view.backgroundColor = .white
         configSegmentedControl()
         configView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateView(nil)
     }
     
 //MARK: - Config
@@ -43,24 +44,14 @@ class ChartsViewController: UIViewController {
     func configView() {
         let safeArea = view.safeAreaLayoutGuide
         
-        for v in [periodSegmentControl, debitView, creditView, transactionView] {
+        for v in [periodSegmentControl, transactionView] {
             view.addSubview(v)
             v.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-            debitView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            debitView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            debitView.trailingAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            debitView.heightAnchor.constraint(equalToConstant: chartHeight),
-            
-            creditView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            creditView.leadingAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            creditView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            creditView.heightAnchor.constraint(equalToConstant: chartHeight),
-            
             periodSegmentControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            periodSegmentControl.topAnchor.constraint(equalTo: debitView.bottomAnchor, constant: paddingInside),
+            periodSegmentControl.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
             
             transactionView.topAnchor.constraint(equalTo: periodSegmentControl.bottomAnchor, constant: paddingInside),
             transactionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
@@ -74,29 +65,26 @@ class ChartsViewController: UIViewController {
     @objc func SegmControlDidChange(_ segmControl: UISegmentedControl){
         switch segmControl.selectedSegmentIndex{
         case 0:
-            updateView(days: -7)
+            updateView(-7)
         case 1:
-            updateView(days: -30)
+            updateView(-30)
         case 2:
-            updateView(days: -90)
+            updateView(-90)
         case 3:
-            updateView(days: nil)
+            updateView(nil)
         default:
             print("def")
         }
     }
     
 //MARK: - Update
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.debitView.layoutIfNeeded()
-        self.creditView.layoutIfNeeded()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//    }
     
-    func updateView(days: Int?) {
-        debitView.updateByDays(days)
-        creditView.updateByDays(days)
-        transactionView.transactions = CategoryStorage.data.allTransactionsByDays(days)
+    func updateView(_ days: Int?) {
+        let transactions = storage.allTransactionsByDays(days)
+        transactionView.transactions = storage.sortTransactionsByCategory(category: category, transactions)
         transactionView.tableView.reloadData()
     }
 }

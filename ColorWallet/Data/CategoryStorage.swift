@@ -19,7 +19,7 @@ class CategoryStorage {
     func addCategory(_ category: Category) {
        try! realm.write {
             realm.add(category)
-        print("we add \(category) with type: \(category.type.desc)")
+        print("we add \(category.name) with type: \(category.type.desc)")
         }
     }
     
@@ -117,14 +117,38 @@ class CategoryStorage {
     
     func allTransactions() -> [Transaction] {
         let allCategories = realm.objects(Category.self)
-        var arr = [Transaction]()
+        var result = [Transaction]()
 
         for v in allCategories {
             for el in v.transactions {
-                arr.append(el)
+                result.append(el)
         }
         }
-        return arr
+        return result
+    }
+    
+    func allTransactionsByDays(_ days: Int?) -> [Transaction] {
+        var result = [Transaction]()
+        
+        let transactions = allTransactions()
+        let dateX  = NSDate().add(days: days ?? 0)
+
+        if days == nil {
+           result = transactions
+        } else {
+            for v in transactions {
+                if (v.date as Date) > dateX {
+                    result.append(v)
+                }
+            }
+        }
+
+        return result
+    }
+    
+    func sortTransactionsByCategory(category: Category, _ transaction: [Transaction]) -> [Transaction]{
+        let result = transaction.filter { $0.category?.name == category.name}
+        return result
     }
     
    
