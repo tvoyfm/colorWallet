@@ -43,12 +43,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //MARK: - Config
         func configAddTransactionButton() {
             addTransactionButton.setTitle("Записать операцию", for: .normal)
-            addTransactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
+            
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(addTransaction))
+            addTransactionButton.addGestureRecognizer(gesture)
         }
 
         func configAddCategoryButton() {
             addCategoryButton.setTitle("+", for: .normal)
             addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
+            
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(addCategory))
+            addCategoryButton.addGestureRecognizer(gesture)
         }
     
         func configBalanceView() {
@@ -79,21 +84,21 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 balance.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
                 balance.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
                 balance.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-                balance.heightAnchor.constraint(equalToConstant: 80),
+                balance.heightAnchor.constraint(equalToConstant: view.frame.height/6.5),
             // Category
                 category.topAnchor.constraint(equalTo: balance.bottomAnchor, constant: paddingInside),
                 category.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
                 category.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
                 category.bottomAnchor.constraint(equalTo: addTransactionButton.topAnchor, constant: -paddingInside),
             // Add category button
-                addCategoryButton.centerXAnchor.constraint(equalTo: category.centerXAnchor),
-                addCategoryButton.bottomAnchor.constraint(equalTo: category.bottomAnchor, constant: -paddingInside),
-                addCategoryButton.heightAnchor.constraint(equalToConstant: addCategoryButton.buttonSize),
-                addCategoryButton.widthAnchor.constraint(equalTo: category.widthAnchor, constant: -paddingInside*2),
+                addCategoryButton.centerYAnchor.constraint(equalTo: addTransactionButton.centerYAnchor),
+                addCategoryButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                addCategoryButton.heightAnchor.constraint(equalToConstant: 60),
+                addCategoryButton.widthAnchor.constraint(equalToConstant: 60),
             // Add transaction button
                 addTransactionButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
                 addTransactionButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
-                addTransactionButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                addTransactionButton.trailingAnchor.constraint(equalTo: addCategoryButton.leadingAnchor, constant: -paddingLR),
                 addTransactionButton.heightAnchor.constraint(equalToConstant: 60)
             ])
         }
@@ -108,7 +113,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func chartPresent() {
-        present(chartsVC, animated: true, completion: nil)
+        if !isEmpty() { present(chartsVC, animated: true, completion: nil) }
     }
     
 //MARK: - Update
@@ -116,6 +121,23 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         balanceView.updateLabelBalance()
         categoryView.updateCategories()
         categoryView.tableView.reloadData()
+    }
+    
+    func isEmpty() -> Bool {
+        var result = false
+        
+        if (storage.allTransactions().isEmpty) {
+            result = true
+            
+            let alert = UIAlertController(title: "Упс", message: "Кажется у вас нет данных чтобы смотреть статистику", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Создать категорию", style: .default, handler: { action in self.addCategory() }))
+            alert.addAction(UIAlertAction(title: "Создать транзакцию", style: .default, handler: { action in self.addTransaction() }))
+            alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
+
+            self.present(alert, animated: true)
+        }
+
+        return result
     }
     
 //MARK: - TableView DataSource & Delegate
@@ -140,9 +162,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! CategoryTableViewCell
-        let vc = TransactionViewController()
-        self.present(vc, animated: true, completion: nil)
-        vc.category = cell.category!
+        let cellHaveTransactions = storage.categoryHasTransaction(cell.category!) as Bool
+        
+        if cellHaveTransactions {
+            let vc = TransactionViewController()
+            self.present(vc, animated: true, completion: nil)
+            vc.category = cell.category!
+        } else {
+            let alert = UIAlertController(title: "Упс", message: "Кажется у вас нет транзакций по этой категории", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Создать транзакцию", style: .default, handler: { action in self.addTransaction() }))
+            alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
+            self.present(alert, animated: true)        }
     }
 
 }

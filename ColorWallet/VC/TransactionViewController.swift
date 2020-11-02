@@ -15,6 +15,7 @@ class TransactionViewController: UIViewController {
     let paddingInside           = CGFloat(10)
     
 //MARK: - Objects
+    var headerView              = HeaderView()
     var periodSegmentControl    = UISegmentedControl()
     var transactionView         = TransactionView()
     var category                = Category()
@@ -23,12 +24,13 @@ class TransactionViewController: UIViewController {
 //MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         configSegmentedControl()
         configView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateView(nil)
     }
     
@@ -44,19 +46,24 @@ class TransactionViewController: UIViewController {
     func configView() {
         let safeArea = view.safeAreaLayoutGuide
         
-        for v in [periodSegmentControl, transactionView] {
+        for v in [headerView, periodSegmentControl, transactionView] {
             view.addSubview(v)
             v.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-            periodSegmentControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            periodSegmentControl.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
+            headerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
+            headerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+            headerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+            headerView.heightAnchor.constraint(equalToConstant: 80),
             
-            transactionView.topAnchor.constraint(equalTo: periodSegmentControl.bottomAnchor, constant: paddingInside),
+            periodSegmentControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            periodSegmentControl.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            
+            transactionView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: paddingInside),
             transactionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             transactionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            transactionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside)
+            transactionView.bottomAnchor.constraint(equalTo: periodSegmentControl.topAnchor, constant: -paddingInside)
         ])
     }
     
@@ -77,14 +84,11 @@ class TransactionViewController: UIViewController {
         }
     }
     
-//MARK: - Update
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//    }
-    
+//MARK: - Update 
     func updateView(_ days: Int?) {
         let transactions = storage.allTransactionsByDays(days)
         transactionView.transactions = storage.sortTransactionsByCategory(category: category, transactions)
         transactionView.tableView.reloadData()
+        headerView.setText((transactionView.transactions.first?.category!.name)!)
     }
 }

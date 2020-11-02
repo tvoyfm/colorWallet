@@ -10,21 +10,22 @@ import UIKit
 @IBDesignable
 class GradientView: UIView {
     
-    private var timer = Timer()
-    private var timeAnim = Double(1.5)
+    private var timer       = Timer()
+    private var timeAnim    = Double(2)
+    
+    lazy var colors = [
+        UIColor.blue.cgColor,
+        UIColor.green.cgColor,
+        UIColor.orange.cgColor,
+        UIColor.red.cgColor
+    ]
         
     lazy var gradient: CAGradientLayer = {
         let gradient = CAGradientLayer()
         gradient.type = .conic
         
-        // default colors
-        gradient.colors = [
-            UIColor.blue.cgColor,
-            UIColor.green.cgColor,
-            UIColor.orange.cgColor,
-            UIColor.red.cgColor
-        ]
-
+        gradient.colors = colors
+        
         gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
         let endY = 0.5 + frame.size.width / frame.size.height / 2
         gradient.endPoint = CGPoint(x: 1, y: endY)
@@ -38,7 +39,17 @@ class GradientView: UIView {
     
     lazy var blurView = UIVisualEffectView(effect: blur)
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        timer = Timer.scheduledTimer(timeInterval: timeAnim, target: self, selector: #selector(updateColors), userInfo: nil, repeats: true)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func layoutSubviews() {
+        super.layoutSubviews()
         
         gradient.frame = bounds
         blurView.frame = bounds
@@ -48,32 +59,22 @@ class GradientView: UIView {
         
         layer.cornerRadius = 15
         layer.masksToBounds = true
-        
-        timer = Timer.scheduledTimer(timeInterval: timeAnim, target: self, selector: #selector(updateColors), userInfo: nil, repeats: true)
+        gradient.colors = colors
     }
-    
+        
+    //MARK: - Animation func
     @objc func updateColors(){
-        let randColors = [
+        let fromColors = colors
+        let toColors = [
               UIColor.random().cgColor,
               UIColor.random().cgColor,
               UIColor.random().cgColor,
               UIColor.random().cgColor
-          ]
+        ]
+        colors = toColors
         
-        UIView.animate(withDuration: timeAnim, animations: {
-            self.gradient.colors = randColors
-        })
-    }
-    
-    @objc func updateColors2(){
-        let randColors = [
-              UIColor.random().cgColor,
-              UIColor.random().cgColor,
-              UIColor.random().cgColor,
-              UIColor.random().cgColor
-          ]
-        
-        gradient.setColors(randColors,
+        gradient.setColors(toColors,
+                           fromColors,
                            animated: true,
                            withDuration: timeAnim,
                            timingFunctionName: .linear)

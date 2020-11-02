@@ -8,13 +8,17 @@
 import UIKit
 
 class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+
+//MARK: - Objects & Parameters
 // Views
-    var nameTextField       = MainTextField()
-    var sumTextField        = MainTextField()
-    var dateTextField       = MainTextField()
-    var categoryTextField   = MainTextField()
-    var acceptButton        = AddMainButton()
+    var headerView          = HeaderView(text: "Новая операция")
+    
+    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название")
+    var sumTextField        = MainTextField(label: "Cумма", placeholderText: "Введите сумму")
+    var dateTextField       = MainTextField(label: "Дата", placeholderText: "Введите дату")
+    var categoryTextField   = MainTextField(label: "Категория", placeholderText: "Выберите категорию")
+
+    var acceptButton        = AddMainButton(label: "Добавить")
 
 // Parameters
     var array           : [Category] = []
@@ -28,13 +32,13 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
 
     //  -- padding for left and right
     let paddingLR       = CGFloat(15)
-    let paddingInside   = CGFloat(20)
-    
+    let paddingInside   = CGFloat(25)
+   
+//MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
-        configNameTextField()
         configSumTextField()
         configAcceptButton()
         configDateTextField()
@@ -43,51 +47,41 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         constraintViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        array = CategoryStorage.data.allCategories()
-    }
-    
-    func configNameTextField() {
-        nameTextField.placeholder = "Название"
-    }
-    
+//MARK: - TextFields
     func configSumTextField() {
-        sumTextField.placeholder    = "Сумма"
         sumTextField.keyboardType   = .decimalPad
     }
     
     func configDateTextField() {
-        datePicker.locale = .init(identifier: "ru_RU")
-        
-        dateTextField.placeholder   = "Дата"
-        dateTextField.inputView     = datePicker
+        datePicker.locale       = .init(identifier: "ru_RU")
+        dateTextField.inputView = datePicker
         dateTextField.addInputAccessoryView(title: "Done", target: self, selector: #selector(tapDateDone))
-    }
-    
-    func configAcceptButton() {
-        acceptButton.setTitle("Добавить операцию", for: .normal)
-        acceptButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
     }
     
     func configCategoryTextField() {
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
         
-        categoryTextField.placeholder   = "Категория"
         categoryTextField.inputView = categoryPicker
     }
-    
+
     func constraintViews(){
         let safeArea = view.safeAreaLayoutGuide
         
-        for v in [nameTextField, sumTextField, dateTextField, categoryTextField, acceptButton] {
+        for v in [headerView, nameTextField, sumTextField, dateTextField, categoryTextField, acceptButton] {
             view.addSubview(v)
             v.translatesAutoresizingMaskIntoConstraints = false
         }
 
         NSLayoutConstraint.activate([
+            headerView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            headerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
+            headerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+            headerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+            headerView.heightAnchor.constraint(equalToConstant: 80),
+            
             nameTextField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            nameTextField.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
+            nameTextField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: paddingInside),
             nameTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             nameTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
             nameTextField.heightAnchor.constraint(equalToConstant: 35),
@@ -117,6 +111,12 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         ])
     }
     
+//MARK: - Buttons
+    func configAcceptButton() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(addTransaction))
+        acceptButton.addGestureRecognizer(gesture)
+    }
+
     @objc func tapDateDone() {
         view.endEditing(true)
         let dateFormate = DateFormatter()
@@ -134,8 +134,18 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
             _ = Transaction(name: text!, date: dateTransaction, sum: (sum?.doubleValue)!, category: categoryTransaction)
             MainViewController.updateView()
             dismiss(animated: true, completion: nil)
-        } else {
-            print("no thanks")
+        }
+    }
+    
+//MARK: - Update
+    override func viewWillAppear(_ animated: Bool) {
+        array = CategoryStorage.data.allCategories()
+        cleanView()
+    }
+    
+    func cleanView() {
+        for v in [nameTextField, sumTextField, dateTextField, categoryTextField]{
+            v.text = ""
         }
     }
 
@@ -149,12 +159,18 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextField.text  = array[row].name
-        categoryTransaction     = array[row].self
+        if array.count != 0 {
+            categoryTextField.text  = array[row].name
+            categoryTransaction     = array[row].self
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return array[row].name
+        if array.count != 0 {
+            return array[row].name
+        } else {
+            return ""
+        }
     }
     
 }

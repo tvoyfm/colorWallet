@@ -1,10 +1,10 @@
 import UIKit
 
-@IBDesignable
 class AddMainButton: UIButton {
     
     var buttonColor     = Color.lightGray
     var buttonTintColor = Color.darkBlue
+    var buttonSize      = CGFloat(50)
     var buttonFont      = UIFont(name: "Montserrat-Bold", size: 20)
     var cornerRadius:   CGFloat = 15
     
@@ -18,12 +18,24 @@ class AddMainButton: UIButton {
         setupButton()
     }
     
+    convenience init(label: String) {
+        self.init()
+        setupButton()
+        setTitle(label, for: .normal)
+    }
+    
     func setupButton() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius  = cornerRadius
-        backgroundColor     = buttonColor.uiColor
         titleLabel?.font    = buttonFont
-        setTitleColor(.gray, for: .highlighted)
+        
+        let gradient = GradientView()
+        gradient.bounds = self.bounds
+        gradient.translatesAutoresizingMaskIntoConstraints = false
+        
+        insertSubview(gradient, at: 0)
+        
+        gradient.constraintInto(self)
 }
 
 }

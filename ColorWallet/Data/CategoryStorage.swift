@@ -117,13 +117,15 @@ class CategoryStorage {
     
     func allTransactions() -> [Transaction] {
         let allCategories = realm.objects(Category.self)
-        var result = [Transaction]()
+        var transactions = [Transaction]()
 
         for v in allCategories {
             for el in v.transactions {
-                result.append(el)
+                transactions.append(el)
+            }
         }
-        }
+        
+        let result = transactions.sorted(by: { $0.date.compare($1.date as Date) == .orderedDescending })
         return result
     }
     
@@ -148,6 +150,20 @@ class CategoryStorage {
     
     func sortTransactionsByCategory(category: Category, _ transaction: [Transaction]) -> [Transaction]{
         let result = transaction.filter { $0.category?.name == category.name}
+        return result
+    }
+    
+    func categoryHasTransaction(_ category: Category) -> Bool {
+        var result = false
+        let transactions = allTransactions()
+        
+        for v in transactions {
+            if v.category?.name == category.name {
+                result = true
+                break
+            }
+        }
+        
         return result
     }
     

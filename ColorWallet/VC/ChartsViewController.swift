@@ -26,7 +26,7 @@ class ChartsViewController: UIViewController {
 //MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         configSegmentedControl()
         configView()
     }
@@ -50,22 +50,22 @@ class ChartsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             debitView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            debitView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            debitView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             debitView.trailingAnchor.constraint(equalTo: safeArea.centerXAnchor),
             debitView.heightAnchor.constraint(equalToConstant: chartHeight),
             
             creditView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             creditView.leadingAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            creditView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            creditView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
             creditView.heightAnchor.constraint(equalToConstant: chartHeight),
             
-            periodSegmentControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            periodSegmentControl.topAnchor.constraint(equalTo: debitView.bottomAnchor, constant: paddingInside),
-            
-            transactionView.topAnchor.constraint(equalTo: periodSegmentControl.bottomAnchor, constant: paddingInside),
+            transactionView.topAnchor.constraint(equalTo: creditView.bottomAnchor, constant: paddingInside),
             transactionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             transactionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            transactionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside)
+            transactionView.bottomAnchor.constraint(equalTo: periodSegmentControl.topAnchor, constant: -paddingInside),
+            
+            periodSegmentControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            periodSegmentControl.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
     
@@ -89,14 +89,18 @@ class ChartsViewController: UIViewController {
 //MARK: - Update
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.debitView.layoutIfNeeded()
-        self.creditView.layoutIfNeeded()
+        updateView(days: nil)
+        periodSegmentControl.selectedSegmentIndex = 3
     }
     
     func updateView(days: Int?) {
         debitView.updateByDays(days)
         creditView.updateByDays(days)
+        
         transactionView.transactions = CategoryStorage.data.allTransactionsByDays(days)
         transactionView.tableView.reloadData()
+        
+        debitView.layoutIfNeeded()
+        creditView.layoutIfNeeded()
     }
 }

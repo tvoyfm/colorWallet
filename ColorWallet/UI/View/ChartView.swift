@@ -31,10 +31,12 @@ class ChartView: UIView {
     //MARK: - Init
     func setupChart(){
         pieView.chartDescription?.enabled   = false
-        pieView.drawHoleEnabled             = false
+        //pieView.drawHoleEnabled             = false
+        pieView.holeColor                   = .systemBackground
         pieView.rotationAngle               = -90
         pieView.rotationEnabled             = false
         pieView.isUserInteractionEnabled    = false
+        pieView.drawEntryLabelsEnabled      = false
         
         self.addSubview(pieView)
         pieView.translatesAutoresizingMaskIntoConstraints = false

@@ -26,6 +26,8 @@
 		0174BF7E2549A0CD00B07544 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174BF7D2549A0CD00B07544 /* TransactionView.swift */; };
 		0174BF802549A26700B07544 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174BF7F2549A26700B07544 /* TransactionTableViewCell.swift */; };
 		0174BF822549DAF100B07544 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174BF812549DAF100B07544 /* TransactionViewController.swift */; };
+		0174BF84254DED0400B07544 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174BF83254DED0400B07544 /* HeaderView.swift */; };
+		0174BF86254DEF1800B07544 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174BF85254DEF1800B07544 /* HeaderLabel.swift */; };
 		0178C76D25306F0C000F4E21 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178C76C25306F0C000F4E21 /* GradientView.swift */; };
 		017AF6D024B8C95F00612CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */; };
 		017AF6D224B8C95F00612CD6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017AF6D124B8C95F00612CD6 /* SceneDelegate.swift */; };
@@ -66,6 +68,8 @@
 		0174BF7D2549A0CD00B07544 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		0174BF7F2549A26700B07544 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		0174BF812549DAF100B07544 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		0174BF83254DED0400B07544 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		0174BF85254DEF1800B07544 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
 		0178C76C25306F0C000F4E21 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		017AF6CC24B8C95F00612CD6 /* ColorWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017AF6CF24B8C95F00612CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				0140C0EE253246A100737474 /* BalanceLabel.swift */,
+				0174BF85254DEF1800B07544 /* HeaderLabel.swift */,
 			);
 			path = Label;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				0140C0F025324DC600737474 /* CategoryView.swift */,
 				01327CA2254689F700133F3F /* ChartView.swift */,
 				0174BF7D2549A0CD00B07544 /* TransactionView.swift */,
+				0174BF83254DED0400B07544 /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				011D176D2530944C0039DDDF /* MainViewController.swift in Sources */,
 				0174BF7E2549A0CD00B07544 /* TransactionView.swift in Sources */,
 				01B29E4825334FE500434562 /* UIView+.swift in Sources */,
+				0174BF86254DEF1800B07544 /* HeaderLabel.swift in Sources */,
 				011E6AA5253F3B0A00085490 /* CategoryTableViewCell.swift in Sources */,
 				01B2B2A12533929700FFB0A1 /* Balance.swift in Sources */,
 				011E6A9F253ACB6B00085490 /* UITextField+.swift in Sources */,
@@ -411,6 +418,7 @@
 				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
 				011E6AA3253DCB9900085490 /* String+.swift in Sources */,
 				01B68AB52538B206008468CB /* CategoryStorage.swift in Sources */,
+				0174BF84254DED0400B07544 /* HeaderView.swift in Sources */,
 				01327C9E25417B9600133F3F /* ChartsViewController.swift in Sources */,
 				01024E3E2546F954002A491B /* NSDate+.swift in Sources */,
 				01B68ABC2538B7D6008468CB /* AddCategoryViewController.swift in Sources */,
@@ -571,16 +579,18 @@
 			baseConfigurationReference = 1DB32129365856AC1C3BCC67 /* Pods-ColorWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y2FBF2ZJ7C;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = B92M3CX86P;
 				INFOPLIST_FILE = ColorWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.ColorWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.bcs.bank-online.testOnly.wallet";
 				PRODUCT_NAME = ColorWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "In-House - BCS Bank Branch Test (2023.01)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -591,16 +601,18 @@
 			baseConfigurationReference = CC3242EAA52C54D75518CF13 /* Pods-ColorWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y2FBF2ZJ7C;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = B92M3CX86P;
 				INFOPLIST_FILE = ColorWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.ColorWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.bcs.bank-online.testOnly.wallet";
 				PRODUCT_NAME = ColorWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "In-House - BCS Bank Branch Test (2023.01)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

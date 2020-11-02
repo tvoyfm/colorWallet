@@ -8,7 +8,6 @@ class AddSecondButton: UIButton {
     var buttonFont      = UIFont(name: "Montserrat-Bold", size: 35)
     var cornerRadius:   CGFloat = 15
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButton()
@@ -22,9 +21,15 @@ class AddSecondButton: UIButton {
     func setupButton() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius  = cornerRadius
-        backgroundColor     = buttonColor.uiColor
         titleLabel?.font    = buttonFont
-        setTitleColor(.gray, for: .highlighted)
+        
+        let gradient = GradientView()
+        gradient.bounds = self.bounds
+        gradient.translatesAutoresizingMaskIntoConstraints = false
+        
+        insertSubview(gradient, at: 0)
+        
+        gradient.constraintInto(self)
     }
 
 }
