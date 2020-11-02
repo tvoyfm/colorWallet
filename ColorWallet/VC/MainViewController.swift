@@ -109,7 +109,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func addTransaction(){
-        present(addTransactionVC, animated: true, completion: nil)
+        if (!storage.allCategories().isEmpty){
+            present(addTransactionVC, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Упс", message: "Кажется у вас нет категорий чтобы записать операцию", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Создать категорию", style: .default, handler: { action in self.addCategory() }))
+            alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        
     }
     
     @objc func chartPresent() {
@@ -126,14 +134,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func isEmpty() -> Bool {
         var result = false
         
-        if (storage.allTransactions().isEmpty) {
+        if (storage.allCategories().isEmpty || storage.allTransactions().isEmpty) {
             result = true
             
-            let alert = UIAlertController(title: "Упс", message: "Кажется у вас нет данных чтобы смотреть статистику", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Создать категорию", style: .default, handler: { action in self.addCategory() }))
-            alert.addAction(UIAlertAction(title: "Создать транзакцию", style: .default, handler: { action in self.addTransaction() }))
+            let alert = UIAlertController(title: "Упс", message: "Кажется у вас не хватает данных чтобы смотреть статистику", preferredStyle: .alert)
+            
+            if (storage.allCategories().isEmpty) {
+                alert.addAction(UIAlertAction(title: "Создать категорию", style: .default, handler: { action in self.addCategory() }))
+            }
+            if (!(storage.allCategories().isEmpty) && storage.allTransactions().isEmpty) {
+                alert.addAction(UIAlertAction(title: "Создать транзакцию", style: .default, handler: { action in self.addTransaction() }))
+            }
+            
             alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
-
             self.present(alert, animated: true)
         }
 
