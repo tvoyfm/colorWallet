@@ -19,7 +19,6 @@ class CategoryStorage {
     func addCategory(_ category: Category) {
        try! realm.write {
             realm.add(category)
-        print("we add \(category.name) with type: \(category.type.desc)")
         }
     }
     

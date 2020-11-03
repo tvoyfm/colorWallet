@@ -12,9 +12,9 @@ class HeaderView: UIView {
     var headerLabel = HeaderLabel()
     var gradientView = GradientView()
     
-    convenience init(text: String) {
+    convenience init(text: String?) {
         self.init()
-        setText(text)
+        setText(text ?? "")
     }
     
     override func layoutSubviews() {
@@ -41,7 +41,7 @@ class HeaderView: UIView {
         ])
     }
     
-    func setText(_ text: String) {
+    func setText(_ text: String?) {
         self.headerLabel.text = text
     }
 }

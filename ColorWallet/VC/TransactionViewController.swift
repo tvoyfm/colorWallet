@@ -32,6 +32,9 @@ class TransactionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateView(nil)
+        
+        let textForHeader = transactionView.transactions.first?.category?.name
+        headerView.setText(textForHeader)
     }
     
 //MARK: - Config
@@ -89,6 +92,5 @@ class TransactionViewController: UIViewController {
         let transactions = storage.allTransactionsByDays(days)
         transactionView.transactions = storage.sortTransactionsByCategory(category: category, transactions)
         transactionView.tableView.reloadData()
-        headerView.setText((transactionView.transactions.first?.category!.name)!)
     }
 }

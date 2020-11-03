@@ -17,19 +17,21 @@ class MainTextField: UITextField {
         super.init(coder: aDecoder)
     }
     
-    convenience init(label: String, placeholderText: String) {
+    convenience init(label: String, placeholderText: String, hasCloseButton: Bool) {
         self.init()
         labelText = label
         placeholder = placeholderText
         
-        configTextField()
+        configTextField(hasCloseButton)
         configLabel()
     }
     
-    func configTextField(){
+    func configTextField(_ hasCloseButton: Bool){
         layer.cornerRadius = corner
         translatesAutoresizingMaskIntoConstraints = false
-        addInputAccessoryView(title: "Done", target: self, selector: #selector(tapDone))
+        if hasCloseButton {
+            addInputAccessoryView(title: "Готово", target: self, selector: #selector(tapDone))   
+        }
     }
 
     func configLabel(){

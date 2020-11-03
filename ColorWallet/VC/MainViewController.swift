@@ -183,7 +183,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             vc.category = cell.category!
         } else {
             let alert = UIAlertController(title: "Упс", message: "Кажется у вас нет транзакций по этой категории", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Создать транзакцию", style: .default, handler: { action in self.addTransaction() }))
+            alert.addAction(UIAlertAction(title: "Создать транзакцию", style: .default, handler: { action in
+                self.addTransactionVC.selectCategory = cell.category
+                self.addTransaction()
+            }))
             alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
             self.present(alert, animated: true)        }
     }

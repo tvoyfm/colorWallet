@@ -11,7 +11,7 @@ class AddCategoryViewController: UIViewController {
 //MARK: - Objects & Parameters
     var headerView          = HeaderView(text: "Новая категория")
     var typeSegmentControl  = UISegmentedControl()
-    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название категории")
+    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название категории", hasCloseButton: true)
     var acceptButton        = AddMainButton(label: "Добавить")
 //    var colorPicker         = UIColorPicker (wait XCode 12)
     

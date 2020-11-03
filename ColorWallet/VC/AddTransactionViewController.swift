@@ -13,16 +13,16 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
 // Views
     var headerView          = HeaderView(text: "Новая операция")
     
-    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название")
-    var sumTextField        = MainTextField(label: "Cумма", placeholderText: "Введите сумму")
-    var dateTextField       = MainTextField(label: "Дата", placeholderText: "Введите дату")
-    var categoryTextField   = MainTextField(label: "Категория", placeholderText: "Выберите категорию")
+    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название", hasCloseButton: true)
+    var sumTextField        = MainTextField(label: "Cумма", placeholderText: "Введите сумму", hasCloseButton: true)
+    var dateTextField       = MainTextField(label: "Дата", placeholderText: "Введите дату", hasCloseButton: true)
+    var categoryTextField   = MainTextField(label: "Категория", placeholderText: "Выберите категорию", hasCloseButton: false)
 
     var acceptButton        = AddMainButton(label: "Добавить")
 
 // Parameters
     var array           : [Category] = []
-    let balance         = Balance.data
+    var selectCategory  : Category?
     let datePicker      = UIDatePicker()
     let categoryPicker  = UIPickerView()
     
@@ -134,20 +134,32 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
             _ = Transaction(name: text!, date: dateTransaction, sum: (sum?.doubleValue)!, category: categoryTransaction)
             MainViewController.updateView()
             dismiss(animated: true, completion: nil)
+            cleanView()
         }
     }
     
 //MARK: - Update
     override func viewWillAppear(_ animated: Bool) {
         array = CategoryStorage.data.allCategories()
-        cleanView()
+        updateCategoryField()
     }
     
-    func cleanView() {
-        for v in [nameTextField, sumTextField, dateTextField, categoryTextField]{
-            v.text = ""
+        func cleanView() {
+            for v in [nameTextField, sumTextField, dateTextField]{
+                v.text = ""
+            }
+            updateCategoryField()
         }
-    }
+        
+            func updateCategoryField() {
+                if selectCategory != nil {
+                    categoryTextField.text  = selectCategory?.name
+                    categoryTransaction     = selectCategory!.self
+                } else {
+                    categoryTextField.text  = array.first?.name
+                    categoryTransaction     = array.first!.self
+                }
+            }
 
 //MARK: - UIPickerExtension
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -160,8 +172,9 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if array.count != 0 {
-            categoryTextField.text  = array[row].name
-            categoryTransaction     = array[row].self
+            selectCategory = array[row].self
+            updateCategoryField()
+            self.view.endEditing(true)
         }
     }
     
