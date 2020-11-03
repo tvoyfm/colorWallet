@@ -17,21 +17,18 @@ class MainTextField: UITextField {
         super.init(coder: aDecoder)
     }
     
-    convenience init(label: String, placeholderText: String, hasCloseButton: Bool) {
+    convenience init(label: String, placeholderText: String) {
         self.init()
         labelText = label
         placeholder = placeholderText
         
-        configTextField(hasCloseButton)
+        configTextField()
         configLabel()
     }
     
-    func configTextField(_ hasCloseButton: Bool){
+    func configTextField(){
         layer.cornerRadius = corner
         translatesAutoresizingMaskIntoConstraints = false
-        if hasCloseButton {
-            addInputAccessoryView(title: "Готово", target: self, selector: #selector(tapDone))   
-        }
     }
 
     func configLabel(){
@@ -47,9 +44,5 @@ class MainTextField: UITextField {
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
             label.heightAnchor.constraint(equalToConstant: labelHigh)
         ])
-    }
-    
-    @objc func tapDone() {
-        endEditing(true)
     }
 }

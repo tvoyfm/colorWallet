@@ -1,13 +1,12 @@
 //
 //  BalanceView.swift
-//  SkillTest
+//  ColorWallet
 //
 //  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.
 //
 
 import UIKit
 
-@IBDesignable
 class BalanceView: UIView {
     
     var data = Balance.data

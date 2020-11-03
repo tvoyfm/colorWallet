@@ -5,10 +5,6 @@
 //  Copyright © 2020 Gleb Stolyarchuk. All rights reserved.
 //
 
-//    Экран графика расходов/доходов
-//    - Можно выбрать промежуток: неделя/месяц/квартал/всё время
-//    - Для выбранного промежутка показывается график расходов и доходов по дням
-
 import UIKit
 
 class ChartsViewController: UIViewController {

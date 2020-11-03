@@ -13,10 +13,10 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
 // Views
     var headerView          = HeaderView(text: "Новая операция")
     
-    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название", hasCloseButton: true)
-    var sumTextField        = MainTextField(label: "Cумма", placeholderText: "Введите сумму", hasCloseButton: true)
-    var dateTextField       = MainTextField(label: "Дата", placeholderText: "Введите дату", hasCloseButton: true)
-    var categoryTextField   = MainTextField(label: "Категория", placeholderText: "Выберите категорию", hasCloseButton: false)
+    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название")
+    var sumTextField        = MainTextField(label: "Cумма", placeholderText: "Введите сумму")
+    var dateTextField       = MainTextField(label: "Дата", placeholderText: "Введите дату")
+    var categoryTextField   = MainTextField(label: "Категория", placeholderText: "Выберите категорию")
 
     var acceptButton        = AddMainButton(label: "Добавить")
 
@@ -33,8 +33,12 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     //  -- padding for left and right
     let paddingLR       = CGFloat(15)
     let paddingInside   = CGFloat(25)
-   
-//MARK: - Init
+    
+    let headerHeight    = CGFloat(80)
+    let textFieldHeight = CGFloat(35)
+    let buttonHeight    = CGFloat(60)
+
+   //MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -44,18 +48,27 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         configDateTextField()
         configCategoryTextField()
         
-        constraintViews()
+        configViews()
+        
+        registerForKeyboardNotifications()
+    }
+    
+//MARK: - DeInit
+    deinit {
+        removeKeyboardNotifications()
     }
     
 //MARK: - TextFields
     func configSumTextField() {
-        sumTextField.keyboardType   = .decimalPad
+        sumTextField.keyboardType = .decimalPad
     }
     
     func configDateTextField() {
+        datePicker.maximumDate  = NSDate() as Date
         datePicker.locale       = .init(identifier: "ru_RU")
+        datePicker.addTarget(self, action: #selector(updateDateField), for: .valueChanged)
+        
         dateTextField.inputView = datePicker
-        dateTextField.addInputAccessoryView(title: "Done", target: self, selector: #selector(tapDateDone))
     }
     
     func configCategoryTextField() {
@@ -65,7 +78,10 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         categoryTextField.inputView = categoryPicker
     }
 
-    func constraintViews(){
+    func configViews(){
+        let gesture  = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        view.addGestureRecognizer(gesture)
+        
         let safeArea = view.safeAreaLayoutGuide
         
         for v in [headerView, nameTextField, sumTextField, dateTextField, categoryTextField, acceptButton] {
@@ -78,36 +94,36 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
             headerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
             headerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             headerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            headerView.heightAnchor.constraint(equalToConstant: 80),
+            headerView.heightAnchor.constraint(equalToConstant: headerHeight),
             
             nameTextField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             nameTextField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: paddingInside),
             nameTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             nameTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            nameTextField.heightAnchor.constraint(equalToConstant: 35),
+            nameTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
             sumTextField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             sumTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: paddingInside),
             sumTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             sumTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            sumTextField.heightAnchor.constraint(equalToConstant: 35),
+            sumTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
             dateTextField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             dateTextField.topAnchor.constraint(equalTo: sumTextField.bottomAnchor, constant: paddingInside),
             dateTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             dateTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            dateTextField.heightAnchor.constraint(equalToConstant: 35),
+            dateTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
             categoryTextField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             categoryTextField.topAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: paddingInside),
             categoryTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             categoryTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            categoryTextField.heightAnchor.constraint(equalToConstant: 35),
+            categoryTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
             acceptButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
             acceptButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             acceptButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            acceptButton.heightAnchor.constraint(equalToConstant: 60)
+            acceptButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
     }
     
@@ -122,7 +138,7 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         let dateFormate = DateFormatter()
         dateFormate.dateFormat = "dd-MM-yyyy HH:mm"
         dateTextField.text = dateFormate.string(from: datePicker.date)
-        dateTransaction = dateFormate.date(from: dateTextField.text!)! as NSDate
+        dateTransaction = dateFormate.date(from: dateTextField.text ?? "01-01-2020 00:00")! as NSDate
     }
         
     @objc func addTransaction() {
@@ -130,36 +146,67 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         let sum     = sumTextField.text
         let date    = dateTextField.text
         
-        if (text != "" && sum != "" && date != nil) {
-            _ = Transaction(name: text!, date: dateTransaction, sum: (sum?.doubleValue)!, category: categoryTransaction)
+        let t = validTransaction(text: text, sum: sum, date: date)
+        
+        if t.complete {
+            _ = Transaction(name: t.transText, date: t.transDate, sum: t.transSum, category: categoryTransaction)
+            
             MainViewController.updateView()
             dismiss(animated: true, completion: nil)
             cleanView()
         }
     }
     
+    func validTransaction(text: String?, sum: String?, date: String?) -> (transText: String, transSum: Double, transDate: NSDate, complete: Bool) {
+        var complete = false
+        var t = String()
+        var s = Double()
+        var d = NSDate()
+        
+        if (text != "" && sum != "" && date != "" && (sum?.doubleValue) != nil){
+            t = text ?? ""
+            s = sum?.doubleValue ?? 0
+            d = dateTransaction
+            
+            complete = true
+        }
+        return (t, s, d, complete)
+    }
+    
 //MARK: - Update
     override func viewWillAppear(_ animated: Bool) {
         array = CategoryStorage.data.allCategories()
         updateCategoryField()
+        updateDateField()
     }
     
-        func cleanView() {
-            for v in [nameTextField, sumTextField, dateTextField]{
-                v.text = ""
-            }
-            updateCategoryField()
+    func cleanView() {
+        for v in [nameTextField, sumTextField, dateTextField]{
+            v.text = ""
         }
+        updateCategoryField()
+    }
         
-            func updateCategoryField() {
-                if selectCategory != nil {
-                    categoryTextField.text  = selectCategory?.name
-                    categoryTransaction     = selectCategory!.self
-                } else {
-                    categoryTextField.text  = array.first?.name
-                    categoryTransaction     = array.first!.self
-                }
-            }
+    func updateCategoryField() {
+        if selectCategory != nil {
+            categoryTextField.text  = selectCategory?.name
+            categoryTransaction     = selectCategory!.self
+        } else {
+            categoryTextField.text  = array.first?.name
+            categoryTransaction     = array.first!.self
+        }
+    }
+    
+    @objc func updateDateField() {
+        let dateFormate = DateFormatter()
+        dateFormate.dateFormat = "dd-MM-yyyy HH:mm"
+        dateTextField.text = dateFormate.string(from: datePicker.date)
+        dateTransaction = dateFormate.date(from: dateTextField.text ?? "01-01-2020 00:00")! as NSDate
+    }
+    
+    @objc func endEditing() {
+        view.endEditing(true)
+    }
 
 //MARK: - UIPickerExtension
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -184,6 +231,27 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         } else {
             return ""
         }
+    }
+    
+//MARK: - Keyboard Notifications
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func kbShow(_ notify: Notification) {
+        let userInfo    = notify.userInfo
+        let kbFrame     = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        acceptButton.transform = .init(translationX: 0, y: -(kbFrame.height-buttonHeight+paddingLR))
+    }
+    
+    @objc func kbHide()  {
+        acceptButton.transform = .identity
     }
     
 }

@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        storage.printAll()
+        //storage.printAll()
     }
     
     func setupView() {

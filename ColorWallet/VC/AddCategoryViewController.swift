@@ -11,7 +11,7 @@ class AddCategoryViewController: UIViewController {
 //MARK: - Objects & Parameters
     var headerView          = HeaderView(text: "Новая категория")
     var typeSegmentControl  = UISegmentedControl()
-    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название категории", hasCloseButton: true)
+    var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название категории")
     var acceptButton        = AddMainButton(label: "Добавить")
 //    var colorPicker         = UIColorPicker (wait XCode 12)
     
@@ -21,6 +21,10 @@ class AddCategoryViewController: UIViewController {
     //  -- padding for left and right
     let paddingLR       = CGFloat(15)
     let paddingInside   = CGFloat(25)
+    
+    let headerHeight    = CGFloat(80)
+    let textFieldHeight = CGFloat(35)
+    let buttonHeight    = CGFloat(60)
 
 //MARK: - Init
     override func viewDidLoad() {
@@ -30,7 +34,15 @@ class AddCategoryViewController: UIViewController {
         configTypeSegmentControl()
         configNameTextField()
         configAcceptButton()
+        
         configView()
+        
+        registerForKeyboardNotifications()
+    }
+    
+//MARK: - DeInit
+    deinit {
+        removeKeyboardNotifications()
     }
 
 //MARK: - Config
@@ -50,6 +62,9 @@ class AddCategoryViewController: UIViewController {
     }
     
     func configView(){
+        let gesture  = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        view.addGestureRecognizer(gesture)
+        
         for v in [headerView, typeSegmentControl, acceptButton, nameTextField]{
             view.addSubview(v)
             v.translatesAutoresizingMaskIntoConstraints = false
@@ -61,24 +76,24 @@ class AddCategoryViewController: UIViewController {
             headerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: paddingInside),
             headerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             headerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            headerView.heightAnchor.constraint(equalToConstant: 80),
+            headerView.heightAnchor.constraint(equalToConstant: headerHeight),
             
             typeSegmentControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             typeSegmentControl.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: paddingInside),
             typeSegmentControl.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             typeSegmentControl.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            typeSegmentControl.heightAnchor.constraint(equalToConstant: 35),
+            typeSegmentControl.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
             nameTextField.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             nameTextField.topAnchor.constraint(equalTo: typeSegmentControl.bottomAnchor, constant: paddingInside),
             nameTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             nameTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            nameTextField.heightAnchor.constraint(equalToConstant: 35),
+            nameTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
             acceptButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
             acceptButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             acceptButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-            acceptButton.heightAnchor.constraint(equalToConstant: 60)
+            acceptButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
     }
     
@@ -113,5 +128,31 @@ class AddCategoryViewController: UIViewController {
     func cleanView() {
         nameTextField.text = ""
     }
+    
+    @objc func endEditing() {
+        view.endEditing(true)
+    }
+    
+//MARK: - Keyboard Notifications
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func kbShow(_ notify: Notification) {
+        let userInfo    = notify.userInfo
+        let kbFrame     = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        acceptButton.transform = .init(translationX: 0, y: -(kbFrame.height-buttonHeight+paddingLR))
+    }
+    
+    @objc func kbHide()  {
+        acceptButton.transform = .identity
+    }
+
 
 }
