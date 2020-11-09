@@ -13,10 +13,11 @@ class AddCategoryViewController: UIViewController {
     var typeSegmentControl  = UISegmentedControl()
     var nameTextField       = MainTextField(label: "Название", placeholderText: "Введите название категории")
     var acceptButton        = AddMainButton(label: "Добавить")
-//    var colorPicker         = UIColorPicker (wait XCode 12)
+    let colorPicker         = ColorPickerView(label: "Цвет")
     
     let storage = CategoryStorage.data
     var type: TransactionType?
+    var currentColor = UIColor.clear
     
     //  -- padding for left and right
     let paddingLR       = CGFloat(15)
@@ -34,6 +35,7 @@ class AddCategoryViewController: UIViewController {
         configTypeSegmentControl()
         configNameTextField()
         configAcceptButton()
+        configColorView()
         
         configView()
         
@@ -45,7 +47,7 @@ class AddCategoryViewController: UIViewController {
         removeKeyboardNotifications()
     }
 
-//MARK: - Config
+//MARK: - Configuration elements
     func configTypeSegmentControl() {
         let items = [TransactionType.credit.desc, TransactionType.debit.desc]
         typeSegmentControl = UISegmentedControl(items: items)
@@ -61,11 +63,16 @@ class AddCategoryViewController: UIViewController {
         acceptButton.addGestureRecognizer(gesture)
     }
     
+    func configColorView() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(colorPickerPresent))
+        colorPicker.addGestureRecognizer(gesture)
+    }
+    
     func configView(){
         let gesture  = UITapGestureRecognizer(target: self, action: #selector(endEditing))
         view.addGestureRecognizer(gesture)
         
-        for v in [headerView, typeSegmentControl, acceptButton, nameTextField]{
+        for v in [headerView, typeSegmentControl, acceptButton, nameTextField, colorPicker]{
             view.addSubview(v)
             v.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -90,6 +97,11 @@ class AddCategoryViewController: UIViewController {
             nameTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
             nameTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
+            colorPicker.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: paddingInside),
+            colorPicker.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+            colorPicker.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+            colorPicker.heightAnchor.constraint(equalToConstant: textFieldHeight),
+            
             acceptButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
             acceptButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             acceptButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
@@ -102,7 +114,7 @@ class AddCategoryViewController: UIViewController {
         let text = nameTextField.text
         
         if (text != "" && type != nil) {
-            let category = Category(name: text!, color: .random(), transactionType: type!)
+            let category = Category(name: text!, color: colorPicker.currentColor, transactionType: type!)
             storage.addCategory(category)
             MainViewController.updateView()
             dismiss(animated: true, completion: nil)
@@ -118,6 +130,10 @@ class AddCategoryViewController: UIViewController {
         default:
             print("nil type :(")
         }
+    }
+    
+    @objc func colorPickerPresent(){
+        present(colorPicker.VC, animated: true, completion: nil)
     }
     
 //MARK: - Update
@@ -153,6 +169,4 @@ class AddCategoryViewController: UIViewController {
     @objc func kbHide()  {
         acceptButton.transform = .identity
     }
-
-
 }
