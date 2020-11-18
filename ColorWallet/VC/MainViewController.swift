@@ -12,8 +12,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //  Views
     static var balanceView      = BalanceView()
     static var categoryView     = CategoryView()
-    var addTransactionButton    = AddMainButton(type: .custom)
-    var addCategoryButton       = AddSecondButton(type: .custom)
+    var addTransactionButton    = AddSecondButton(type: .custom)
+    var dateChooser             = DateChooserView()
 //  ViewControllers
     let addCategoryVC           = AddCategoryViewController()
     let addTransactionVC        = AddTransactionViewController()
@@ -34,26 +34,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func setupView() {
         configAddTransactionButton()
-        configAddCategoryButton()
         configBalanceView()
         configCategoryView()
+        configDateChooser()
         configView()
     }
     
 //MARK: - Config
         func configAddTransactionButton() {
-            addTransactionButton.setTitle("Записать операцию", for: .normal)
+            addTransactionButton.setTitle("+", for: .normal)
             
             let gesture = UITapGestureRecognizer(target: self, action: #selector(addTransaction))
             addTransactionButton.addGestureRecognizer(gesture)
-        }
-
-        func configAddCategoryButton() {
-            addCategoryButton.setTitle("+", for: .normal)
-            addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
-            
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(addCategory))
-            addCategoryButton.addGestureRecognizer(gesture)
         }
     
         func configBalanceView() {
@@ -61,11 +53,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             MainViewController.balanceView.addGestureRecognizer(gesture)
         }
 
-    func configCategoryView() {
-        MainViewController.categoryView.tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
-        MainViewController.categoryView.tableView.dataSource = self
-        MainViewController.categoryView.tableView.delegate = self
-    }
+        func configCategoryView() {
+            MainViewController.categoryView.tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
+            MainViewController.categoryView.tableView.dataSource = self
+            MainViewController.categoryView.tableView.delegate = self
+        }
+    
+        func configDateChooser() {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(datePickerPresent))
+            dateChooser.addGestureRecognizer(gesture)
+        }
     
         // configConstraints
         func configView() {
@@ -74,7 +71,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let safeArea = view.safeAreaLayoutGuide
             
-            for v in [balance, category, addCategoryButton, addTransactionButton] {
+            for v in [balance, category, addTransactionButton, dateChooser] {
                 view.addSubview(v)
                 v.translatesAutoresizingMaskIntoConstraints = false
             }
@@ -90,16 +87,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 category.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
                 category.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
                 category.bottomAnchor.constraint(equalTo: addTransactionButton.topAnchor, constant: -paddingInside),
-            // Add category button
-                addCategoryButton.centerYAnchor.constraint(equalTo: addTransactionButton.centerYAnchor),
-                addCategoryButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
-                addCategoryButton.heightAnchor.constraint(equalToConstant: 60),
-                addCategoryButton.widthAnchor.constraint(equalToConstant: 60),
             // Add transaction button
                 addTransactionButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
-                addTransactionButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
-                addTransactionButton.trailingAnchor.constraint(equalTo: addCategoryButton.leadingAnchor, constant: -paddingLR),
-                addTransactionButton.heightAnchor.constraint(equalToConstant: 60)
+                addTransactionButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                addTransactionButton.heightAnchor.constraint(equalToConstant: 60),
+                addTransactionButton.widthAnchor.constraint(equalToConstant: 60),
+                
+                dateChooser.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
+                dateChooser.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
+                dateChooser.heightAnchor.constraint(equalToConstant: 60),
+                dateChooser.trailingAnchor.constraint(equalTo: addTransactionButton.leadingAnchor, constant: -paddingInside)
             ])
         }
 
@@ -122,6 +119,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func chartPresent() {
         if !isEmpty() { present(chartsVC, animated: true, completion: nil) }
+    }
+    
+    @objc func datePickerPresent() {
+        let alert = UIAlertController(title: "Упс", message: "Тут скоро будет выбор даты", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
 //MARK: - Update
@@ -188,7 +191,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.addTransaction()
             }))
             alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: nil))
-            self.present(alert, animated: true)        }
+            self.present(alert, animated: true)
+        }
     }
 
 }

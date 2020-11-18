@@ -35,6 +35,7 @@
 		017AF6D924B8C95F00612CD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6D824B8C95F00612CD6 /* Assets.xcassets */; };
 		017AF6DC24B8C95F00612CD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017AF6DA24B8C95F00612CD6 /* LaunchScreen.storyboard */; };
 		019468452533726C00989BAB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019468442533726C00989BAB /* Category.swift */; };
+		01A83491256542D300898092 /* DateChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A83490256542D300898092 /* DateChooserView.swift */; };
 		01AEFDCF25209DAC00EC4B71 /* AddMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AEFDCE25209DAC00EC4B71 /* AddMainButton.swift */; };
 		01B29E4825334FE500434562 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B29E4725334FE500434562 /* UIView+.swift */; };
 		01B2B29F253384F900FFB0A1 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B2B29E253384F900FFB0A1 /* Transaction.swift */; };
@@ -79,11 +80,11 @@
 		017AF6DB24B8C95F00612CD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		017AF6DD24B8C95F00612CD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		019468442533726C00989BAB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		01A83490256542D300898092 /* DateChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateChooserView.swift; path = ColorWallet/UI/View/DateChooserView.swift; sourceTree = SOURCE_ROOT; };
 		01AEFDCE25209DAC00EC4B71 /* AddMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMainButton.swift; sourceTree = "<group>"; };
 		01B29E4725334FE500434562 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		01B2B29E253384F900FFB0A1 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		01B2B2A02533929700FFB0A1 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
-		01B2B2A2253399F400FFB0A1 /* Task.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Task.md; sourceTree = "<group>"; };
 		01B68AB22538A58C008468CB /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		01B68AB42538B206008468CB /* CategoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStorage.swift; sourceTree = "<group>"; };
 		01B68AB92538B434008468CB /* AddSecondButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSecondButton.swift; sourceTree = "<group>"; };
@@ -171,7 +172,6 @@
 		017AF6C324B8C95F00612CD6 = {
 			isa = PBXGroup;
 			children = (
-				01B2B2A2253399F400FFB0A1 /* Task.md */,
 				017AF6CE24B8C95F00612CD6 /* ColorWallet */,
 				017AF6CD24B8C95F00612CD6 /* Products */,
 				9D36293840186A80D7292036 /* Pods */,
@@ -247,6 +247,7 @@
 				01327CA2254689F700133F3F /* ChartView.swift */,
 				0174BF7D2549A0CD00B07544 /* TransactionView.swift */,
 				0174BF83254DED0400B07544 /* HeaderView.swift */,
+				01A83490256542D300898092 /* DateChooserView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -416,6 +417,7 @@
 				0140C0EF253246A100737474 /* BalanceLabel.swift in Sources */,
 				01B68ABA2538B435008468CB /* AddSecondButton.swift in Sources */,
 				014DAA2225284F0400983A97 /* UIColor+.swift in Sources */,
+				01A83491256542D300898092 /* DateChooserView.swift in Sources */,
 				011E6AA3253DCB9900085490 /* String+.swift in Sources */,
 				01B68AB52538B206008468CB /* CategoryStorage.swift in Sources */,
 				0174BF84254DED0400B07544 /* HeaderView.swift in Sources */,
@@ -579,18 +581,18 @@
 			baseConfigurationReference = 1DB32129365856AC1C3BCC67 /* Pods-ColorWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y2FBF2ZJ7C;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = B92M3CX86P;
 				INFOPLIST_FILE = ColorWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.ColorWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.bcs.bank-online.testOnly.wallet";
 				PRODUCT_NAME = ColorWallet;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "In-House - BCS Bank Branch Test (2023.01)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -601,18 +603,18 @@
 			baseConfigurationReference = CC3242EAA52C54D75518CF13 /* Pods-ColorWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y2FBF2ZJ7C;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = B92M3CX86P;
 				INFOPLIST_FILE = ColorWallet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.ColorWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.bcs.bank-online.testOnly.wallet";
 				PRODUCT_NAME = ColorWallet;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "In-House - BCS Bank Branch Test (2023.01)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
