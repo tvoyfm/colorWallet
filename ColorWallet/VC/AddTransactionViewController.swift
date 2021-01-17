@@ -29,17 +29,15 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     let datePicker      = UIDatePicker()
     let categoryPicker  = UIPickerView()
     
-// For add
-    var dateTransaction = NSDate()
-    var categoryTransaction = Category()
-
-    //  -- padding for left and right
     let paddingLR       = CGFloat(15)
     let paddingInside   = CGFloat(25)
-    
     let headerHeight    = CGFloat(80)
     let textFieldHeight = CGFloat(35)
     let buttonHeight    = CGFloat(60)
+    
+// For add to transaction
+    var dateTransaction = NSDate()
+    var categoryTransaction = Category()
 
    //MARK: - Init
     override func viewDidLoad() {
@@ -65,6 +63,11 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
 //MARK: - TextFields
     func configSumTextField() {
         sumTextField.keyboardType = .decimalPad
+    }
+    
+    func configAcceptButton() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(addTransaction))
+        acceptButton.addGestureRecognizer(gesture)
     }
     
     func configDateTextField() {
@@ -140,10 +143,7 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
 //MARK: - Buttons
-    func configAcceptButton() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(addTransaction))
-        acceptButton.addGestureRecognizer(gesture)
-    }
+
 
     @objc func tapDateDone() {
         view.endEditing(true)
