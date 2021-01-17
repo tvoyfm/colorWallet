@@ -61,7 +61,7 @@ class DateChooserView: UIView {
         
         dateSegmentControl.selectedSegmentTintColor = backSelectColor
         dateSegmentControl.backgroundColor = backColor
-        dateSegmentControl.setTitleTextAttributes(attributes, for: .normal)
+        dateSegmentControl.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
         //dateSegmentControl.selectedSegmentIndex = 0
     }
     

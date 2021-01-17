@@ -594,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.bcs.bank-online.testOnly.wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.colorWallet;
 				PRODUCT_NAME = ColorWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "In-House - BCS Bank Branch Test (2023.01)";
 				SWIFT_VERSION = 5.0;
@@ -616,7 +616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.bcs.bank-online.testOnly.wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = tvoyfm.colorWallet;
 				PRODUCT_NAME = ColorWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "In-House - BCS Bank Branch Test (2023.01)";
 				SWIFT_VERSION = 5.0;

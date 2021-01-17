@@ -143,8 +143,6 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
 //MARK: - Buttons
-
-
     @objc func tapDateDone() {
         view.endEditing(true)
         let dateFormate = DateFormatter()
@@ -154,6 +152,7 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     @objc func addCategory() {
+        print(#function)
         addCategoryVC.afterAdd = updateView
         present(addCategoryVC, animated: true, completion: nil)
     }

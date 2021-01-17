@@ -112,15 +112,15 @@ class AddCategoryViewController: UIViewController {
     
 //MARK: - Functions
     @objc func addCategory() {
-        (afterAdd!)()
-        print(afterAdd)
         let text = nameTextField.text
         
         if (text != "" && type != nil) {
             let category = Category(name: text!, color: colorPicker.currentColor, transactionType: type!)
             storage.addCategory(category)
             MainViewController.updateView()
-            (afterAdd!)()
+            if afterAdd != nil {
+                (afterAdd!)()
+            }
             dismiss(animated: true, completion: nil)
         }
     }
