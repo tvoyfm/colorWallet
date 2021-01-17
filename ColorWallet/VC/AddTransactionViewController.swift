@@ -10,6 +10,8 @@ import UIKit
 class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
 //MARK: - Objects & Parameters
+// VC
+    let addCategoryVC       = AddCategoryViewController()
 // Views
     var headerView          = HeaderView(text: "Новая операция")
     
@@ -17,6 +19,7 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     var sumTextField        = MainTextField(label: "Cумма", placeholderText: "Введите сумму")
     var dateTextField       = MainTextField(label: "Дата", placeholderText: "Введите дату")
     var categoryTextField   = MainTextField(label: "Категория", placeholderText: "Выберите категорию")
+    var addCategoryButton   = UIButton(type: .contactAdd)
 
     var acceptButton        = AddMainButton(label: "Добавить")
 
@@ -45,6 +48,7 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         configAcceptButton()
         configDateTextField()
         configCategoryTextField()
+        configCategoryButton()
         
         configViews()
         
@@ -80,6 +84,11 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         categoryTextField.inputView = categoryPicker
     }
+    
+    func configCategoryButton() {
+        addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
+        addCategoryButton.tintColor = .label
+    }
 
     func configViews(){
         let gesture  = UITapGestureRecognizer(target: self, action: #selector(endEditing))
@@ -87,7 +96,7 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         let safeArea = view.safeAreaLayoutGuide
         
-        for v in [headerView, nameTextField, sumTextField, dateTextField, categoryTextField, acceptButton] {
+        for v in [headerView, nameTextField, sumTextField, dateTextField, categoryTextField, acceptButton, addCategoryButton] {
             view.addSubview(v)
             v.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -123,6 +132,9 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
             categoryTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
             categoryTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
             
+            addCategoryButton.centerYAnchor.constraint(equalTo: categoryTextField.centerYAnchor),
+            addCategoryButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
+                    
             acceptButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -paddingInside),
             acceptButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: paddingLR),
             acceptButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -paddingLR),
@@ -139,6 +151,11 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
         dateFormate.dateFormat = "dd-MM-yyyy HH:mm"
         dateTextField.text = dateFormate.string(from: datePicker.date)
         dateTransaction = dateFormate.date(from: dateTextField.text ?? "01-01-2020 00:00")! as NSDate
+    }
+    
+    @objc func addCategory() {
+        addCategoryVC.afterAdd = updateView
+        present(addCategoryVC, animated: true, completion: nil)
     }
         
     @objc func addTransaction() {
@@ -175,6 +192,10 @@ class AddTransactionViewController: UIViewController, UIPickerViewDelegate, UIPi
     
 //MARK: - Update
     override func viewWillAppear(_ animated: Bool) {
+        updateView()
+    }
+    
+    func updateView() {
         array = CategoryStorage.data.allCategories()
         updateCategoryField()
         updateDateField()

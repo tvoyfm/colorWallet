@@ -18,6 +18,7 @@ class AddCategoryViewController: UIViewController {
     let storage = CategoryStorage.data
     var type: TransactionType?
     var currentColor = UIColor.clear
+    var afterAdd: (() -> Void)?
     
     //  -- padding for left and right
     let paddingLR       = CGFloat(15)
@@ -111,12 +112,15 @@ class AddCategoryViewController: UIViewController {
     
 //MARK: - Functions
     @objc func addCategory() {
+        (afterAdd!)()
+        print(afterAdd)
         let text = nameTextField.text
         
         if (text != "" && type != nil) {
             let category = Category(name: text!, color: colorPicker.currentColor, transactionType: type!)
             storage.addCategory(category)
             MainViewController.updateView()
+            (afterAdd!)()
             dismiss(animated: true, completion: nil)
         }
     }
